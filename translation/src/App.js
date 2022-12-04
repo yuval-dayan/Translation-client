@@ -15,7 +15,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-translation        </a>
+123yuval </a>
       </header>
     </div>
   );
