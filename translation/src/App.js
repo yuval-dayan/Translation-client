@@ -1,22 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import MainRow from './MainRow';
+import { TranslationContext } from './context/TranslationContext'
+import { useState } from 'react';
 
 function App() {
+  const [translationArray, setTranslationArray] = useState([])
+
+  const saveChangesToWordsFile = () => {
+    if (translationArray.length > 0) {
+      translationArray.map((v) => {
+        const requestOptions = {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ translation: v.translation })
+        };
+        fetch(`http://localhost:7779/words/${v.wordId}`, requestOptions)
+          .then(response => response.json())
+      })
+    }
+
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-123yuval </a>
-      </header>
+    <div>
+      <TranslationContext.Provider value={{ translationArray, setTranslationArray }}>
+        <button onClick={() => { saveChangesToWordsFile() }}>SAVE</button>
+        <MainRow />
+      </TranslationContext.Provider>
     </div>
   );
 }
