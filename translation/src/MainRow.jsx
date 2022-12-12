@@ -13,7 +13,7 @@ const MainRow = () => {
     //will be removed
     useEffect(() => {
         let arr = [];
-        for (let i = 0; i < 1500; i++) {
+        for (let i = 0; i < 10; i++) {
             arr[i] = data[i];
         }
         setDataExample(arr);
