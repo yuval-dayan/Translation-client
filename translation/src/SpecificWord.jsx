@@ -13,11 +13,11 @@ const SpecificWord = ({ rowData }) => {
     const [checked, setChecked] = useState(false);
     return (
         <div className="specificRow">
-            <div>
+                        {checked &&<div  className="checked-icon" > <CheckIcon/> </div>}
+            <div className="label">
                 {rowData && rowData.label}
-            </div>
-            {rowData && rowData.translation && <DropDown rowData={rowData} setChecked={setChecked} />}
-            {checked && <CheckIcon className="checked-icon" />}
+            </div >
+            {rowData && rowData.translation &&<div className="dropDown-wrapper" > <DropDown rowData={rowData} setChecked={setChecked}/></div>}
         </div>
     )
 }
