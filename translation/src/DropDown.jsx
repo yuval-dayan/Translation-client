@@ -16,10 +16,17 @@ export default function DropDown({ rowData, setChecked }) {
     const handleChange = (event: SelectChangeEvent) => {
         setValueToPresent(event.target.value);
         setChecked(true);
+        let newTranslationArray = [...translationArray, { wordId: rowData.id, translation: event.target.value }]
+        setTranslationArray(newTranslationArray);
+        console.log(newTranslationArray);
+
     };
     useEffect(() => {
-        fetch(`http://localhost:7779/bulgaria/translation?regexName=${valueFromRow.label}`)
+        if(valueFromRow){
+            fetch(`http://localhost:7779/bulgaria/translation?regexName=${valueFromRow.label}`)
             .then(response => response.json()).then(data1 => setValueSet(data1)).catch(e => console.error(e))
+        }
+
 
     }, []);
 
@@ -38,8 +45,8 @@ export default function DropDown({ rowData, setChecked }) {
                 >
                     <MenuItem value={rowData.translation}>{rowData.translation}</MenuItem>
                     {
-                        valueSet.map((v) =>
-                            <MenuItem value={v.translation}>{v.translation}</MenuItem>
+                        valueSet.map((v,index) =>
+                            <MenuItem key={`menuItemId${(v && v.id)?v.id : `menuItemIdFromIndex${index}`}`} value={v.translation}>{v.translation}</MenuItem>
                         )
                     }
                 </Select>

@@ -1,12 +1,22 @@
 import MainRow from './MainRow';
 import { TranslationContext } from './context/TranslationContext'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { Button } from '@mui/material';
 
 function App() {
   const [translationArray, setTranslationArray] = useState([])
+  const [disabled,setDisabled] = useState(true)
+  useEffect(() => {
+if(translationArray.length > 0 && disabled)
+{
+setDisabled(false);
+}
+
+}, [translationArray]);
 
   const saveChangesToWordsFile = () => {
     if (translationArray.length > 0) {
+      setDisabled(true);
       translationArray.map((v) => {
         const requestOptions = {
           method: 'PUT',
@@ -22,7 +32,7 @@ function App() {
   return (
     <div>
       <TranslationContext.Provider value={{ translationArray, setTranslationArray }}>
-        <button onClick={() => { saveChangesToWordsFile() }}>SAVE</button>
+        <Button disabled={disabled} onClick={() => { saveChangesToWordsFile() }}>SAVE</Button>
         <MainRow />
       </TranslationContext.Provider>
     </div>

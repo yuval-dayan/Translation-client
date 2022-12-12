@@ -13,17 +13,18 @@ const MainRow = () => {
     //will be removed
     useEffect(() => {
         let arr = [];
-        for (let i = 0; i < 10; i++) {
+        for (let i = 0; i < 500; i++) {
             arr[i] = data[i];
         }
+        console.log(arr[0])
         setDataExample(arr);
 
     }, [data]);
     //will be removed
     return ( //dataExample will change to data
-        dataExample.map((v) =>
-            <SpecificWord className="mainRow" rowData={v} />
+        dataExample.map((v,index) =>
+            <SpecificWord key={ (v && v.id)?`specificWordId${v.id}`:`specificWordFromIndex${index}`} className="mainRow" rowData={v} />
         )
     )
 }
-export default MainRow
+export default MainRow;
