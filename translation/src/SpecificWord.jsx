@@ -9,6 +9,7 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 const SpecificWord = ({ rowData }) => {
 
     const [valueSet, setValueSet] = useState([])
+    const [selectedValue,setSelectedValue] = useState(rowData.translation);
     const { translationArray, setTranslationArray } = useContext(TranslationContext)
     const openValueSet = (value) => {
         if (valueSet.length == 0) {
@@ -22,25 +23,28 @@ const SpecificWord = ({ rowData }) => {
 
     }
 
-    const saveValue = (e) => {
-        let newTranslationArray = [...translationArray, { wordId: rowData.id, translation: e.target.value }]
+    const handleChange = (event: SelectChangeEvent) => {
+        setSelectedValue(event.target.value);
+        let newTranslationArray = [...translationArray, { wordId: rowData.id, translation: event.target.value }]
         setTranslationArray(newTranslationArray);
         console.log(newTranslationArray);
-    }
+      };
     return (
         <div className="specificRow">
             <div>
                 {rowData && rowData.label}
             </div>
             {rowData && rowData.translation &&
-                <select className="select" defaultValue={rowData.translation} onClick={() => openValueSet(rowData)} onChange={(e) => { saveValue(e) }}>
-                    <option id={0}>{rowData.translation ? rowData.translation : "SELECT"}</option>
+                <Select  labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                value={selectedValue} defaultValue={rowData.translation} onClick={() => openValueSet(rowData)} onChange={handleChange}>
+                    <MenuItem id={0} value={rowData.translation }>{rowData.translation ? rowData.translation : "SELECT"}</MenuItem>
                     {
                         valueSet.map((v) =>
-                            <option className="select" id={v.id}>{v.translation} </option>
+                            <MenuItem className="select" id={v.id}>{v.translation} </MenuItem>
                         )
                     }
-                </select>}
+                </Select>}
         </div>
     )
 }
