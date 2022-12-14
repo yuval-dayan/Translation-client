@@ -17,6 +17,7 @@ setDisabled(false);
   const saveChangesToWordsFile = () => {
     if (translationArray.length > 0) {
       setDisabled(true);
+      setTranslationArray([]);
       translationArray.map((v) => {
         const requestOptions = {
           method: 'PUT',
@@ -30,7 +31,7 @@ setDisabled(false);
 
   }
   return (
-    <div>
+    <div className='app'>
       <TranslationContext.Provider value={{ translationArray, setTranslationArray }}>
         <Button disabled={disabled} onClick={() => { saveChangesToWordsFile() }}>SAVE</Button>
         <MainRow />
