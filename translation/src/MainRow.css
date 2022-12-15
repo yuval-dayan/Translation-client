@@ -1,3 +1,5 @@
+const menu-back-ground-color :antiquewhite
+
 .mainRow {
     display: ltr;
     position: absolute;
@@ -8,11 +10,11 @@
     display: flex;
     flex-direction: row;
     background-color: blanchedalmond;
-    width: 1000px;
     margin: 10px;
     padding: 10px;
-    justify-content: space-around;
+    justify-content: space-between;
     position:relative ;
+    width: 100%;
 }
 
 .select {
@@ -21,24 +23,98 @@
 
 .checked-icon {
     position: absolute;
-    top: 25px;
-    left: 0;
+    top: 29%;
+    left: 30px;
 }
 .label{
-    position: absolute;
-top: 15px;
-left: 80px;
+    width: 50%;
+    background-color: aliceblue;
+    margin: 0;
+    padding: 0.7vh 0 0 0 ;
+    text-align: center;
+    border-radius: 5px;
+    border: black solid 0.1px;
 }
 
 .dropDown-wrapper{
-position: relative;
-left: 130px;
+    border-radius: 5px;
+    border: black solid 0.1px;
+    width: 50%;
 }
-.app{
+.app1{
     position: absolute;
     left: 0;
     right: 0;
     margin-left: auto;
     margin-right: auto;
     width: fit-content;
+}
+.app{
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    background-color: beige;
+    width: 100%;
+    display: flex;
+    height: 100vh;
+}
+
+
+.app-left-menu{
+    position: relative;
+    background-color: menu-back-ground-color;
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    padding: 10vh 0 0 0;
+}
+.app-main-menu{
+    position: relative;
+    background-color: darkgray;
+}
+.left-menu-options{
+    height: 50px;
+    background-color: aliceblue;
+    margin: 10px 0;
+    display: flex;
+    justify-content: space-around;
+}
+.main-body{
+    display: flex;
+    flex-direction: column;
+    width: inherit;
+}
+.upper-bar{
+    background-color:  menu-back-ground-color;
+    height: 10vh;
+    width: inherit;
+    text-align: center;
+    font-size: 30px;
+    font-weight: 200;
+    margin: 2vh 0 0 0;
+
+}
+.prev-next-word{
+    background-color: menu-back-ground-color;
+    height: 10vh;
+    width: inherit;
+    display: flex;
+    place-content: space-evenly;
+}
+.right-bar{
+    width: 10%;
+    background-color: menu-back-ground-color;
+}
+.main-body-title{
+    display: flex;
+    justify-content: space-around;
+    font-size: larger;
+    font-weight: 500;
+}
+.other-translation{
+    display: flex;
+    justify-content:space-around;
+}
+.other-translation-new-word{
+    width: 80%;
 }

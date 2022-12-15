@@ -2,10 +2,13 @@ import MainRow from './MainRow';
 import { TranslationContext } from './context/TranslationContext'
 import { useEffect, useState } from 'react';
 import { Button } from '@mui/material';
+import MainBody from './MainBody';
+import './MainRow.css'
 
 function App() {
   const [translationArray, setTranslationArray] = useState([])
-  const [disabled,setDisabled] = useState(true)
+  const [disabled,setDisabled] = useState(true);
+
   useEffect(() => {
 if(translationArray.length > 0 && disabled)
 {
@@ -33,8 +36,16 @@ setDisabled(false);
   return (
     <div className='app'>
       <TranslationContext.Provider value={{ translationArray, setTranslationArray }}>
-        <Button disabled={disabled} onClick={() => { saveChangesToWordsFile() }}>SAVE</Button>
-        <MainRow />
+        <div className='app-left-menu '>
+          <div className='left-menu-options'>
+          <Button disabled={disabled} onClick={() => { saveChangesToWordsFile() }}>SAVE</Button>
+          </div>
+          <div className='left-menu-options'></div>
+          <div className='left-menu-options'></div>
+          <div className='left-menu-options'></div>
+        </div>
+          <MainBody />
+          <div className='right-bar'></div>
       </TranslationContext.Provider>
     </div>
   );

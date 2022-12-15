@@ -15,31 +15,30 @@ export default function DropDown({ rowData, setChecked }) {
     const valueFromRow = rowData;
     const [valueSet, setValueSet] = useState([])
     const { translationArray, setTranslationArray } = useContext(TranslationContext)
-    const [newTranslationArray,setNewTranslationArray] = useState(translationArray);
-    let [options,setOptions] = useState([]);
-    const [otherOption,setOtherOption] = useState(false)
+    const [newTranslationArray, setNewTranslationArray] = useState(translationArray);
+    let [options, setOptions] = useState([]);
+    const [otherOption, setOtherOption] = useState(false)
     const OTHER = 'Other';
     const [textInput, setTextInput] = useState('');
     const handleTextInputChange = event => {
         setTextInput(event.target.value);
     };
-    const saveNewValue = ()=>{
+    const saveNewValue = () => {
         let newTranslationArray = [...translationArray, { wordId: rowData.id, translation: textInput }]
         setValueToPresent(textInput);
         setChecked(true);
         setNewTranslationArray(newTranslationArray);
-        setOptions([{value:textInput,label:textInput},...options]);
+        setOptions([{ value: textInput, label: textInput }, ...options]);
         setOtherOption(false);
         setTextInput('');
 
     }
 
     const handleChange = (event) => {
-        if(event.value == OTHER)
-        {
+        if (event.value == OTHER) {
             setOtherOption(true)
         }
-        else{
+        else {
             let newTranslationArray = [...translationArray, { wordId: rowData.id, translation: event.value }]
             setValueToPresent(event.value);
             setChecked(true);
@@ -48,53 +47,54 @@ export default function DropDown({ rowData, setChecked }) {
 
     };
     useEffect(() => {
-        if(valueFromRow && valueSet.length == 0){
+        if (valueFromRow && valueSet.length == 0) {
             fetch(`http://localhost:7779/bulgaria/translation?regexName=${valueFromRow.label}`)
-            .then(response => response.json()).then(data1 => setValueSet(data1)).catch(e => console.error(e))
+                .then(response => response.json()).then(data1 => setValueSet(data1)).catch(e => console.error(e))
         }
     }, []);
     useEffect(() => {
-        if(newTranslationArray.length >0)
-        {
+        if (newTranslationArray.length > 0) {
             setTranslationArray(newTranslationArray);
             console.log(newTranslationArray);
         }
-   
-    
+
+
     }, [newTranslationArray]);
     useEffect(() => {
         {
-        let newOptions =[];
-        if(rowData && rowData.translation)
-        {
-            newOptions = [{value:rowData.translation,label:rowData.translation},{value:'other',label:'other'},...newOptions]
-        }
-        else
-        {
-            newOptions = [{value:'other',label:'other'},...newOptions]
+            let newOptions = [];
+            if (rowData && rowData.translation) {
+                newOptions = [{ value: rowData.translation, label: rowData.translation }, { value: 'Other', label: 'Other' }, ...newOptions]
+            }
+            else {
+                newOptions = [{ value: OTHER, label: OTHER }, ...newOptions]
 
+            }
+            setOptions(newOptions);
         }
-        setOptions(newOptions);
-        }
-   
-    
+
+
     }, [valueSet]);
 
     return (
         <div className="App">
-       {
-        otherOption ? <React.Fragment>
-<TextField onChange= {handleTextInputChange}
-        value= {textInput}
-        id="standard-basic" label="add your new translation" variant="standard" />
-        <IconButton color="primary" aria-label="upload picture" component="label" onClick={saveNewValue}><CheckCircleOutlineIcon /></IconButton>
-        </React.Fragment> 
-        :
-        <Select placeholder={valueToPresent}
-          defaultValue={valueToPresent}
-          onChange={handleChange}
-          options={options}
-        />}
-      </div>
+            {
+                otherOption ? <div className='other-translation'>
+                    <div className='other-translation-new-word'>
+                        <TextField fullWidth onChange={handleTextInputChange}
+                            value={textInput}
+                            id="standard-basic" label="add your new translation" variant="standard" />
+                    </div>
+                    <div>
+                        <IconButton color="primary" aria-label="upload picture" component="label" onClick={saveNewValue}><CheckCircleOutlineIcon /></IconButton>
+                    </div>
+                </div>
+                    :
+                    <Select placeholder={valueToPresent}
+                        defaultValue={valueToPresent}
+                        onChange={handleChange}
+                        options={options}
+                    />}
+        </div>
     );
 }
