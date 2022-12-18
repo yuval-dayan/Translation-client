@@ -24,10 +24,9 @@ export default function DropDown({ rowData, setChecked }) {
         setTextInput(event.target.value);
     };
     const saveNewValue = () => {
-        let newTranslationArray = [...translationArray, { wordId: rowData.id, translation: textInput }]
         setValueToPresent(textInput);
         setChecked(true);
-        setNewTranslationArray(newTranslationArray);
+        setNewTranslationArray([...translationArray, { wordId: rowData.id, translation: textInput ,translated:true }]);
         setOptions([{ value: textInput, label: textInput }, ...options]);
         setOtherOption(false);
         setTextInput('');
@@ -39,10 +38,8 @@ export default function DropDown({ rowData, setChecked }) {
             setOtherOption(true)
         }
         else {
-            let newTranslationArray = [...translationArray, { wordId: rowData.id, translation: event.value }]
             setValueToPresent(event.value);
             setChecked(true);
-            setNewTranslationArray(newTranslationArray);
         }
 
     };

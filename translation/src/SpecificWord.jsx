@@ -5,7 +5,7 @@ import CheckIcon from '@mui/icons-material/Check';
 
 const SpecificWord = ({ rowData }) => {
 
-    const [checked, setChecked] = useState(false);
+    const [checked, setChecked] = useState(rowData && rowData.translated ? rowData.translated : false);
     return (
         <div className="specificRow">
             {checked && <div className="checked-icon" > <CheckIcon /> </div>}

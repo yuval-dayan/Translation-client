@@ -78,6 +78,7 @@ const menu-back-ground-color :antiquewhite
     margin: 10px 0;
     display: flex;
     justify-content: space-around;
+    margin-left: 0.4vw;
 }
 .main-body{
     display: flex;
@@ -118,3 +119,28 @@ const menu-back-ground-color :antiquewhite
 .other-translation-new-word{
     width: 80%;
 }
+.left-menu{
+    overflow: scroll;
+    width: 20vw;
+    direction: rtl;
+}
+.save-button{
+    display: flex;
+    justify-content: center;
+}
+.choosen-app{
+    border: black solid;
+}
+input[type='file'] {
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    opacity: 0;
+  }
+
+  .upload-button{
+    top: 0;
+    position: fixed;
+    padding-top: 2vh;
+    padding-left: 2vw;
+  }

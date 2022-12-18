@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
 
-const UpperBar = () => {
-    return (
-        <div className="upper-bar">Container Name</div>
+const UpperBar = ({containerName}) => {
 
+    return (
+        <div className="upper-bar">{containerName}
+
+        
+        </div>
     )
 }
 export default UpperBar;
