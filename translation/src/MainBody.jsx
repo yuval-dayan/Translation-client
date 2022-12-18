@@ -7,6 +7,7 @@ const MainBody = () => {
     const [pageNumber, setPageNumber] = useState(0);
     const [data, setData] = useState([])
     const [dataToPresent, setDataToPresent] = useState([]) 
+    const [dataLength,setDataLength] = useState(0);
     useEffect(() => {
         fetch('http://localhost:7779/words')
             .then(response => response.json()).then(data => setData(data)).catch(e => console.error(e))
@@ -18,6 +19,7 @@ const MainBody = () => {
             arr[i] = data[i];
         }
         setDataToPresent(arr);
+        setDataLength(Math.ceil(data.length/10))
     }, [data]);
     useEffect(() => {
         let arr = [];
@@ -38,7 +40,7 @@ const MainBody = () => {
             {dataToPresent.map((v, index) =>
                 <SpecificWord key={(v && v.id) ? `specificWordId${v.id}` : `specificWordFromIndex${index}`} rowData={v} />
             )}
-            <PrevNextWord pageNumber={pageNumber} setPageNumber={setPageNumber} />
+            <PrevNextWord pageNumber={pageNumber} setPageNumber={setPageNumber} dataLength={dataLength}/>
         </div>
 
     )
