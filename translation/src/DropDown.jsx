@@ -1,9 +1,4 @@
 import React, { useState, useContext, useEffect } from 'react';
-import Box from '@mui/material/Box';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-//import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { TranslationContext } from "./context/TranslationContext";
 import Select from 'react-select';
 import TextField from '@mui/material/TextField';
@@ -26,7 +21,7 @@ export default function DropDown({ rowData, setChecked }) {
     const saveNewValue = () => {
         setValueToPresent(textInput);
         setChecked(true);
-        setNewTranslationArray([...translationArray, { wordId: rowData.id, translation: textInput ,translated:true }]);
+        setNewTranslationArray([...translationArray, { wordId: rowData.id, translation: textInput, isTranslated: true }]);
         setOptions([{ value: textInput, label: textInput }, ...options]);
         setOtherOption(false);
         setTextInput('');
@@ -43,6 +38,23 @@ export default function DropDown({ rowData, setChecked }) {
         }
 
     };
+    const onkeyPress = (event) => {
+        if (event.key == "Enter") {
+            saveNewValue();
+        }
+
+    }
+    useEffect(() => {
+        const keyDownHandler = event => {
+            if (event.key === 'Escape') {
+                setOtherOption(false);
+            }
+        };
+        document.addEventListener('keydown', keyDownHandler);
+        return () => {
+            document.removeEventListener('keydown', keyDownHandler);
+        };
+    }, []);
     useEffect(() => {
         if (valueFromRow && valueSet.length == 0) {
             fetch(`http://localhost:7779/bulgaria/translation?regexName=${valueFromRow.label}`)
@@ -78,12 +90,13 @@ export default function DropDown({ rowData, setChecked }) {
             {
                 otherOption ? <div className='other-translation'>
                     <div className='other-translation-new-word'>
-                        <TextField fullWidth onChange={handleTextInputChange}
+                        <TextField fullWidth onChange={handleTextInputChange} onKeyPress={onkeyPress}
                             value={textInput}
+                            inputRef={input => input && input.focus()}
                             id="standard-basic" label="add your new translation" variant="standard" />
                     </div>
                     <div>
-                        <IconButton color="primary" aria-label="upload picture" component="label" onClick={saveNewValue}><CheckCircleOutlineIcon /></IconButton>
+                        <IconButton color="primary" aria-label="upload picture" component="label" onKeyDown={saveNewValue} onClick={saveNewValue}><CheckCircleOutlineIcon /></IconButton>
                     </div>
                 </div>
                     :

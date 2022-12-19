@@ -3,11 +3,11 @@ import PrevNextWord from "./PrevNextWords";
 import SpecificWord from "./SpecificWord";
 import UpperBar from "./UpperBar";
 
-const MainBody = ({containerName}) => {
+const MainBody = ({ containerName }) => {
     const [pageNumber, setPageNumber] = useState(1);
     const [data, setData] = useState([])
-    const [dataToPresent, setDataToPresent] = useState([]) 
-    const [dataLength,setDataLength] = useState(0);
+    const [dataToPresent, setDataToPresent] = useState([])
+    const [dataLength, setDataLength] = useState(0);
     useEffect(() => {
         fetch('http://localhost:7779/words')
             .then(response => response.json()).then(data => setData(data)).catch(e => console.error(e))
@@ -20,34 +20,31 @@ const MainBody = ({containerName}) => {
 
     }, [containerName]);
     useEffect(() => {
-        if(data && data.length >0)
-        {
+        if (data && data.length > 0) {
             let arr = [];
             for (let i = 0; i < 10; i++) {
                 arr[i] = data[i];
             }
             setDataToPresent(arr);
-            setDataLength(Math.ceil(data.length/10))
+            setDataLength(Math.ceil(data.length / 10))
         }
 
     }, [data]);
-    const setPageNumberFromLocalStorage = ()=>{
+    const setPageNumberFromLocalStorage = () => {
         let appsFromLS = JSON.parse(localStorage.getItem('applicationsStatus'))
-        if(appsFromLS && appsFromLS.length >0)
-        {
-            let currentContainer =appsFromLS && appsFromLS.find(app => (app && app.name) == containerName)
-            if(currentContainer && currentContainer.pageNumber)
-            return currentContainer.pageNumber;
+        if (appsFromLS && appsFromLS.length > 0) {
+            let currentContainer = appsFromLS && appsFromLS.find(app => (app && app.name) == containerName)
+            if (currentContainer && currentContainer.pageNumber)
+                return currentContainer.pageNumber;
         }
         return 1;
     }
     useEffect(() => {
         let arr = [];
-        if(data.length >0)
-        {
-            let dataAfterSort = data.sort(function(a,b){return a.id-b.id});
-            let firstLabel = pageNumber ==1 ? 0 :(pageNumber) * 10;
-            let lastLabel = pageNumber == 1 ? 10 : pageNumber * 10 + 10
+        if (data.length > 0) {
+            let dataAfterSort = data.sort(function (a, b) { return a.id - b.id });
+            let firstLabel = (pageNumber - 1) * 10;
+            let lastLabel = pageNumber == dataLength ? (((pageNumber - 1) * 10) + (data.length % 10)) : pageNumber * 10;
             for (let i = firstLabel; i < lastLabel; i++) {
                 arr[i] = dataAfterSort[i];
             }
@@ -57,7 +54,7 @@ const MainBody = ({containerName}) => {
     }, [data, pageNumber]);
     return (
         <div className="main-body">
-            <UpperBar containerName={containerName}/>
+            <UpperBar containerName={containerName} />
             <div className="main-body-title">
                 <div >Label</div>
                 <div>Translation</div>
@@ -65,7 +62,7 @@ const MainBody = ({containerName}) => {
             {dataToPresent.map((v, index) =>
                 <SpecificWord key={(v && v.id) ? `specificWordId${v.id}` : `specificWordFromIndex${index}`} rowData={v} />
             )}
-            <PrevNextWord pageNumber={pageNumber} setPageNumber={setPageNumber} dataLength={dataLength} containerName={containerName}/>
+            <PrevNextWord pageNumber={pageNumber} setPageNumber={setPageNumber} dataLength={dataLength} containerName={containerName} />
         </div>
 
     )

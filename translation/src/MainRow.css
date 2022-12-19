@@ -111,6 +111,7 @@ const menu-back-ground-color :antiquewhite
     justify-content: space-around;
     font-size: larger;
     font-weight: 500;
+    margin: 0 4vw;
 }
 .other-translation{
     display: flex;
@@ -120,16 +121,31 @@ const menu-back-ground-color :antiquewhite
     width: 80%;
 }
 .left-menu{
-    overflow: scroll;
+    overflow-y: scroll;
+    overflow-x: hidden;
     width: 20vw;
     direction: rtl;
 }
 .save-button{
+    width: fit-content;
+    background-color: aliceblue;
+    border: aliceblue solid;
+    border-radius: 25px;
+    padding: 2px 32px;
+
+}
+.save-button-wrapper{
     display: flex;
     justify-content: center;
 }
 .choosen-app{
     border: black solid;
+    display: flex;
+    height: max-content;
+    flex-direction: column;
+    align-items: center;
+    padding: 2vh 0 ;
+
 }
 input[type='file'] {
     width: 0;
