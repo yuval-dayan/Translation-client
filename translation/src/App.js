@@ -1,4 +1,3 @@
-import MainRow from './MainRow';
 import { TranslationContext } from './context/TranslationContext'
 import { useEffect, useState } from 'react';
 import { Button } from '@mui/material';
@@ -48,7 +47,7 @@ function App() {
       setDisabled(true);
       setTranslationArray([]);
       let wordsToUpdate = [];
-      translationArray.map((v) => { wordsToUpdate = [...wordsToUpdate, { id: v.wordId, translation: v.translation, isTranslated: true }] })
+      translationArray.map((v) => { wordsToUpdate = [...wordsToUpdate, { id: v.wordId, translation: v.translation, translated: true }] })
       const requestOptions = {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },

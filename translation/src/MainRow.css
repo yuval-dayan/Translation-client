@@ -160,3 +160,8 @@ input[type='file'] {
     padding-top: 2vh;
     padding-left: 2vw;
   }
+  .span-upload{
+    position: absolute;
+    top: 39px;
+    left: 15px;
+  }

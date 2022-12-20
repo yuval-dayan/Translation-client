@@ -21,7 +21,7 @@ export default function DropDown({ rowData, setChecked }) {
     const saveNewValue = () => {
         setValueToPresent(textInput);
         setChecked(true);
-        setNewTranslationArray([...translationArray, { wordId: rowData.id, translation: textInput, isTranslated: true }]);
+        setNewTranslationArray([...translationArray, { wordId: rowData.id, translation: textInput, translated: true }]);
         setOptions([{ value: textInput, label: textInput }, ...options]);
         setOtherOption(false);
         setTextInput('');
