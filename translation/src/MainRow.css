@@ -132,7 +132,7 @@ const menu-back-ground-color :antiquewhite
     text-decoration: none;
     position: absolute;
     right: 44px;
-    top: 0.8vh;
+    top: 2vh;
 
 
 }
@@ -173,7 +173,7 @@ input[type='file'] {
     background: white;
     position: absolute;
     width: 100%;
-    top: 8vh;
+    top: 10vh;
     height: 90vh;
   }
   .seprator{
@@ -213,4 +213,16 @@ input[type='file'] {
 .container-name-upper-bar{
     margin-top: 2vh;
     position: absolute;
+}
+
+.search-bar-wrapper{
+    height: 6vh;
+    margin-top: 2vh;
+    background-color: #d9d9d9;
+}
+.search-bar-input{
+    height: 4vh;
+    margin: 0.75vh 0 0.75vh 0.75vh;
+    padding: 0;
+    width: 30vw;
 }

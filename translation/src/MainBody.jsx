@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import PrevNextWord from "./PrevNextWords";
+import SearchBar from "./SearchBar";
 import SpecificWord from "./SpecificWord";
 
 
@@ -59,6 +60,7 @@ const MainBody = ({ containerName }) => {
 
     return (
         <div className="main-body">
+            <SearchBar/>
             <div className="main-body-title">
                 <div >Label</div>
                 <div>Translation</div>
