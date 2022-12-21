@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import PrevNextWord from "./PrevNextWords";
 import SpecificWord from "./SpecificWord";
-import UpperBar from "./UpperBar";
+
 
 const MainBody = ({ containerName }) => {
     const [pageNumber, setPageNumber] = useState(1);
@@ -54,7 +54,6 @@ const MainBody = ({ containerName }) => {
     }, [data, pageNumber]);
     return (
         <div className="main-body">
-            <UpperBar containerName={containerName} />
             <div className="main-body-title">
                 <div >Label</div>
                 <div>Translation</div>

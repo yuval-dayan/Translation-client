@@ -41,32 +41,25 @@ const menu-back-ground-color :antiquewhite
     border: black solid 0.1px;
     width: 50%;
 }
-.app1{
-    position: absolute;
-    left: 0;
-    right: 0;
-    margin-left: auto;
-    margin-right: auto;
-    width: fit-content;
-}
+
 .app{
     position: absolute;
     margin: 0;
     padding: 0;
-    background-color: beige;
     width: 100%;
     display: flex;
     height: 100vh;
+    flex-flow: row-reverse;
+    background-color: aliceblue;
 }
 
 
 .app-left-menu{
     position: relative;
-    background-color: menu-back-ground-color;
+    background-color:#d9d9d9;
     width: 20%;
     display: flex;
     flex-direction: column;
-    padding: 10vh 0 0 0;
 }
 .app-main-menu{
     position: relative;
@@ -86,13 +79,12 @@ const menu-back-ground-color :antiquewhite
     width: inherit;
 }
 .upper-bar{
-    background-color:  menu-back-ground-color;
     height: 10vh;
     width: inherit;
     text-align: center;
     font-size: 30px;
     font-weight: 200;
-    margin: 2vh 0 0 0;
+    background-color: #949494;
 
 }
 .prev-next-word{
@@ -164,4 +156,12 @@ input[type='file'] {
     position: absolute;
     top: 39px;
     left: 15px;
+  }
+  .main{
+    display: flex;
+    background: aqua;
+    position: absolute;
+    width: 100%;
+    top: 8vh;
+    height: 90vh;
   }

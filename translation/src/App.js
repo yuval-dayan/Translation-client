@@ -4,7 +4,7 @@ import { Button } from '@mui/material';
 import MainBody from './MainBody';
 import './MainRow.css'
 import LeftMenu from './LeftMenu';
-
+import UpperBar from "./UpperBar";
 function App() {
   const [translationArray, setTranslationArray] = useState([])
   const [disabled, setDisabled] = useState(true);
@@ -61,7 +61,9 @@ function App() {
   return (
     <div className='app'>
       <TranslationContext.Provider value={{ translationArray, setTranslationArray }}>
-        <div className='app-left-menu '>
+      <UpperBar containerName={containerName} />
+      <div className='main'>
+      <div className='app-left-menu '>
           <label className='upload-button'>
             <input onChange={saveRootFile} type="file" />
             <span>Upload New Dictionary</span>
@@ -73,8 +75,10 @@ function App() {
         </div>
         <MainBody containerName={containerName} />
         <div className='right-bar'></div>
-      </TranslationContext.Provider>
-    </div>
+        </div>
+    </TranslationContext.Provider>
+      </div>
+     
   );
 }
 
