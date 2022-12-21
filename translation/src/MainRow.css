@@ -9,9 +9,7 @@ const menu-back-ground-color :antiquewhite
 .specificRow {
     display: flex;
     flex-direction: row;
-    background-color: blanchedalmond;
-    margin: 10px;
-    padding: 10px;
+    padding: 1px;
     justify-content: space-between;
     position:relative ;
     width: 100%;
@@ -28,7 +26,6 @@ const menu-back-ground-color :antiquewhite
 }
 .label{
     width: 50%;
-    background-color: aliceblue;
     margin: 0;
     padding: 0.7vh 0 0 0 ;
     text-align: center;
@@ -68,15 +65,16 @@ const menu-back-ground-color :antiquewhite
 .left-menu-options{
     height: 50px;
     background-color: aliceblue;
-    margin: 10px 0;
     display: flex;
     justify-content: space-around;
-    margin-left: 0.4vw;
+    margin: 0 6px;
+    border: black solid 1px;
 }
 .main-body{
     display: flex;
     flex-direction: column;
     width: inherit;
+    padding: 0 2vw;
 }
 .upper-bar{
     height: 10vh;
@@ -103,7 +101,7 @@ const menu-back-ground-color :antiquewhite
     justify-content: space-around;
     font-size: larger;
     font-weight: 500;
-    margin: 0 4vw;
+    margin: 4vh 1vw 1vh 1vw;
 }
 .other-translation{
     display: flex;
@@ -119,11 +117,23 @@ const menu-back-ground-color :antiquewhite
     direction: rtl;
 }
 .save-button{
-    width: fit-content;
-    background-color: aliceblue;
-    border: aliceblue solid;
-    border-radius: 25px;
-    padding: 2px 32px;
+    background: white;
+    text-align: center;
+    width: 60px;
+    height: 60px;
+    border-radius: 100%;
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 35px;
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    position: absolute;
+    right: 44px;
+    top: 0.8vh;
+
 
 }
 .save-button-wrapper{
@@ -131,13 +141,14 @@ const menu-back-ground-color :antiquewhite
     justify-content: center;
 }
 .choosen-app{
-    border: black solid;
     display: flex;
     height: max-content;
     flex-direction: column;
     align-items: center;
     padding: 2vh 0 ;
-
+    margin: 0 0.5vw;
+    background-color: #464b5e;
+    color: white;
 }
 input[type='file'] {
     width: 0;
@@ -159,9 +170,47 @@ input[type='file'] {
   }
   .main{
     display: flex;
-    background: aqua;
+    background: white;
     position: absolute;
     width: 100%;
     top: 8vh;
     height: 90vh;
   }
+  .seprator{
+    display: flex;
+    width: 100%;
+    height: 5vh;
+
+  }
+  .wrapper-seprator{
+    display: flex;
+    width: 100%;
+    height: 5vh;
+
+  }
+  .left-div {
+    border-right: #464b5e solid 2px;
+    width: -webkit-fill-available;
+
+}
+   
+.right-div{
+    border-left: #464b5e solid 2px;
+    width: -webkit-fill-available;
+
+
+}
+.specific-word-wrapper{
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+.torch-logo
+{
+    font-family: cursive;
+    font-size: xx-large;
+    color: darkblue;
+}
+.container-name-upper-bar{
+    margin-top: 2vh;
+    position: absolute;
+}

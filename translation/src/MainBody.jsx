@@ -8,17 +8,21 @@ const MainBody = ({ containerName }) => {
     const [data, setData] = useState([])
     const [dataToPresent, setDataToPresent] = useState([])
     const [dataLength, setDataLength] = useState(0);
-    useEffect(() => {
-        fetch('http://localhost:7779/words')
+    const changeDataByContainerName = ()=>{
+        if(containerName)
+        {
+            fetch(`http://localhost:7779/words/projectName/${containerName}`)
             .then(response => response.json()).then(data => setData(data)).catch(e => console.error(e))
-
+        }
+    }
+    useEffect(() => {
+        changeDataByContainerName()
     }, []);
     useEffect(() => {
         setPageNumber(setPageNumberFromLocalStorage)
-        //TODO -- change the data acording to the conatiner name
-
-
+        changeDataByContainerName()
     }, [containerName]);
+
     useEffect(() => {
         if (data && data.length > 0) {
             let arr = [];
@@ -30,15 +34,6 @@ const MainBody = ({ containerName }) => {
         }
 
     }, [data]);
-    const setPageNumberFromLocalStorage = () => {
-        let appsFromLS = JSON.parse(localStorage.getItem('applicationsStatus'))
-        if (appsFromLS && appsFromLS.length > 0) {
-            let currentContainer = appsFromLS && appsFromLS.find(app => (app && app.name) == containerName)
-            if (currentContainer && currentContainer.pageNumber)
-                return currentContainer.pageNumber;
-        }
-        return 1;
-    }
     useEffect(() => {
         let arr = [];
         if (data.length > 0) {
@@ -51,17 +46,30 @@ const MainBody = ({ containerName }) => {
             setDataToPresent(arr);
         }
 
-    }, [data, pageNumber]);
+    }, [pageNumber]);
+    const setPageNumberFromLocalStorage = () => {
+        let appsFromLS = JSON.parse(localStorage.getItem('applicationsStatus'))
+        if (appsFromLS && appsFromLS.length > 0) {
+            let currentContainer = appsFromLS && appsFromLS.find(app => (app && app.name) == containerName)
+            if (currentContainer && currentContainer.pageNumber)
+                return currentContainer.pageNumber;
+        }
+        return 1;
+    }
+
     return (
         <div className="main-body">
             <div className="main-body-title">
                 <div >Label</div>
                 <div>Translation</div>
             </div>
+            <div className="specific-word-wrapper">
             {dataToPresent.map((v, index) =>
                 <SpecificWord key={(v && v.id) ? `specificWordId${v.id}` : `specificWordFromIndex${index}`} rowData={v} />
             )}
+              </div>
             <PrevNextWord pageNumber={pageNumber} setPageNumber={setPageNumber} dataLength={dataLength} containerName={containerName} />
+      
         </div>
 
     )

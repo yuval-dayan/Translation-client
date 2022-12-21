@@ -1,6 +1,5 @@
 import { TranslationContext } from './context/TranslationContext'
 import { useEffect, useState } from 'react';
-import { Button } from '@mui/material';
 import MainBody from './MainBody';
 import './MainRow.css'
 import LeftMenu from './LeftMenu';
@@ -61,20 +60,18 @@ function App() {
   return (
     <div className='app'>
       <TranslationContext.Provider value={{ translationArray, setTranslationArray }}>
-      <UpperBar containerName={containerName} />
+      <UpperBar containerName={containerName} saveChangesToWordsFile={saveChangesToWordsFile} disabled={disabled}/>
       <div className='main'>
       <div className='app-left-menu '>
           <label className='upload-button'>
-            <input onChange={saveRootFile} type="file" />
-            <span>Upload New Dictionary</span>
+            {/* <input onChange={saveRootFile} type="file" /> */}
+            <span className='torch-logo'>Torch X Translation</span>
           </label>
           <div className='save-button-wrapper'>
-            <div className='save-button'>
-              <Button disabled={disabled} onClick={() => { saveChangesToWordsFile() }}>SAVE</Button></div></div>
+           </div>
           <LeftMenu applicationsStatus={applicationsStatus} setContainerName={setContainerName} containerName={containerName} />
         </div>
         <MainBody containerName={containerName} />
-        <div className='right-bar'></div>
         </div>
     </TranslationContext.Provider>
       </div>
