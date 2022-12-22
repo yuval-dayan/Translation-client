@@ -5,15 +5,16 @@ import SpecificWord from "./SpecificWord";
 
 
 const MainBody = ({ containerName }) => {
+    const [wordEntered, setWordEntered] = useState("");
     const [pageNumber, setPageNumber] = useState(1);
     const [data, setData] = useState([])
     const [dataToPresent, setDataToPresent] = useState([])
     const [dataLength, setDataLength] = useState(0);
-    const changeDataByContainerName = ()=>{
-        if(containerName)
-        {
+    const [isFilter, setIsFilter] = useState(false);
+    const changeDataByContainerName = () => {
+        if (containerName) {
             fetch(`http://localhost:7779/words/projectName/${containerName}`)
-            .then(response => response.json()).then(data => setData(data)).catch(e => console.error(e))
+                .then(response => response.json()).then(data => setData(data)).catch(e => console.error(e))
         }
     }
     useEffect(() => {
@@ -25,29 +26,43 @@ const MainBody = ({ containerName }) => {
     }, [containerName]);
 
     useEffect(() => {
+        let dataLength = data.length < 20 ? data.length : 20;
         if (data && data.length > 0) {
             let arr = [];
-            for (let i = 0; i < 10; i++) {
+            for (let i = 0; i < dataLength; i++) {
                 arr[i] = data[i];
             }
-            setDataToPresent(arr);
-            setDataLength(Math.ceil(data.length / 10))
+            if (arr.length > 0) {
+                let dataAfterSort = arr.sort(function (a, b) { return a.id - b.id });
+                let firstLabel = (pageNumber - 1) * 20;
+                let lastLabel = pageNumber == dataLength ? (((pageNumber - 1) * 20) + (data.length % 20)) : pageNumber * 20;
+                arr = [];
+                for (let i = firstLabel; i < lastLabel; i++) {
+                    arr[i] = dataAfterSort[i];
+                }
+                setDataToPresent(arr);
+            }
+            // if(isFilter)
+            // {
+            //     setDataToPresent(arr);
+            // }
+            setDataLength(Math.ceil(data.length / 20))
         }
 
-    }, [data]);
+    }, [data, pageNumber]);
+
     useEffect(() => {
         let arr = [];
         if (data.length > 0) {
             let dataAfterSort = data.sort(function (a, b) { return a.id - b.id });
-            let firstLabel = (pageNumber - 1) * 10;
-            let lastLabel = pageNumber == dataLength ? (((pageNumber - 1) * 10) + (data.length % 10)) : pageNumber * 10;
+            let firstLabel = (pageNumber - 1) * 20;
+            let lastLabel = pageNumber == dataLength ? (((pageNumber - 1) * 20) + (data.length % 20)) : pageNumber * 20;
             for (let i = firstLabel; i < lastLabel; i++) {
                 arr[i] = dataAfterSort[i];
             }
             setDataToPresent(arr);
         }
-
-    }, [pageNumber]);
+    }, [pageNumber, dataLength]);
     const setPageNumberFromLocalStorage = () => {
         let appsFromLS = JSON.parse(localStorage.getItem('applicationsStatus'))
         if (appsFromLS && appsFromLS.length > 0) {
@@ -60,18 +75,20 @@ const MainBody = ({ containerName }) => {
 
     return (
         <div className="main-body">
-            <SearchBar/>
+            <div className="search">
+                <SearchBar data={data} setData={setData} isFilter={isFilter} setIsFilter={setIsFilter} changeDataByContainerName={changeDataByContainerName} containerName={containerName} />
+            </div>
             <div className="main-body-title">
                 <div >Label</div>
                 <div>Translation</div>
             </div>
             <div className="specific-word-wrapper">
-            {dataToPresent.map((v, index) =>
-                <SpecificWord key={(v && v.id) ? `specificWordId${v.id}` : `specificWordFromIndex${index}`} rowData={v} />
-            )}
-              </div>
+                {dataToPresent.map((v, index) =>
+                    <SpecificWord key={(v && v.id) ? `specificWordId${v.id}` : `specificWordFromIndex${index}`} rowData={v} />
+                )}
+            </div>
             <PrevNextWord pageNumber={pageNumber} setPageNumber={setPageNumber} dataLength={dataLength} containerName={containerName} />
-      
+
         </div>
 
     )

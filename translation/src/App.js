@@ -53,7 +53,9 @@ function App() {
         body: JSON.stringify(wordsToUpdate)
       };
       fetch(`http://localhost:7779/words/`, requestOptions)
-        .then(response => response.json())
+        .then(response => response.json()).then(fetch('http://localhost:7779/words/status')
+        .then(response => response.json()).then(data => setApplicationsStatus(data)).catch(e => console.error(e)))
+    
     }
 
   }

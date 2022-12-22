@@ -8,7 +8,6 @@ const PrevNextWord = ({ pageNumber, setPageNumber, dataLength, containerName }) 
 
     const nextPage = () => {
         setPageNumber(pageNumber + 1)
-        console.log("nextPage")
         setPrevButtonDisabled(false);
     }
     const prevPage = () => {
@@ -29,6 +28,14 @@ const PrevNextWord = ({ pageNumber, setPageNumber, dataLength, containerName }) 
         }
 
     }, [pageNumber]);
+
+    useEffect(() => {
+        if (dataLength == pageNumber) {
+            setNextButtonDisabled(true)
+        }
+        else { setNextButtonDisabled(false) }
+
+    }, [dataLength, pageNumber])
 
     return (
         <div className="prev-next-word">

@@ -1,6 +1,4 @@
-const menu-back-ground-color :antiquewhite
-
-.mainRow {
+const menu-back-ground-color :antiquewhite .mainRow {
     display: ltr;
     position: absolute;
 
@@ -11,7 +9,7 @@ const menu-back-ground-color :antiquewhite
     flex-direction: row;
     padding: 1px;
     justify-content: space-between;
-    position:relative ;
+    position: relative;
     width: 100%;
 }
 
@@ -24,22 +22,23 @@ const menu-back-ground-color :antiquewhite
     top: 29%;
     left: 30px;
 }
-.label{
+
+.label {
     width: 50%;
     margin: 0;
-    padding: 0.7vh 0 0 0 ;
+    padding: 0.7vh 0 0 0;
     text-align: center;
     border-radius: 5px;
     border: black solid 0.1px;
 }
 
-.dropDown-wrapper{
+.dropDown-wrapper {
     border-radius: 5px;
     border: black solid 0.1px;
     width: 50%;
 }
 
-.app{
+.app {
     position: absolute;
     margin: 0;
     padding: 0;
@@ -51,18 +50,20 @@ const menu-back-ground-color :antiquewhite
 }
 
 
-.app-left-menu{
+.app-left-menu {
     position: relative;
-    background-color:#d9d9d9;
+    background-color: #d9d9d9;
     width: 20%;
     display: flex;
     flex-direction: column;
 }
-.app-main-menu{
+
+.app-main-menu {
     position: relative;
     background-color: darkgray;
 }
-.left-menu-options{
+
+.left-menu-options {
     height: 50px;
     background-color: aliceblue;
     display: flex;
@@ -70,13 +71,15 @@ const menu-back-ground-color :antiquewhite
     margin: 0 6px;
     border: black solid 1px;
 }
-.main-body{
+
+.main-body {
     display: flex;
     flex-direction: column;
     width: inherit;
     padding: 0 2vw;
 }
-.upper-bar{
+
+.upper-bar {
     height: 10vh;
     width: inherit;
     text-align: center;
@@ -85,38 +88,45 @@ const menu-back-ground-color :antiquewhite
     background-color: #949494;
 
 }
-.prev-next-word{
+
+.prev-next-word {
     background-color: menu-back-ground-color;
-    height: 10vh;
+    height: 5vh;
     width: inherit;
     display: flex;
     place-content: space-evenly;
 }
-.right-bar{
+
+.right-bar {
     width: 10%;
     background-color: menu-back-ground-color;
 }
-.main-body-title{
+
+.main-body-title {
     display: flex;
     justify-content: space-around;
     font-size: larger;
     font-weight: 500;
-    margin: 4vh 1vw 1vh 1vw;
+    margin: 3vh 1vw 1vh 1vw;
 }
-.other-translation{
+
+.other-translation {
     display: flex;
-    justify-content:space-around;
+    justify-content: space-around;
 }
-.other-translation-new-word{
+
+.other-translation-new-word {
     width: 80%;
 }
-.left-menu{
+
+.left-menu {
     overflow-y: scroll;
     overflow-x: hidden;
     width: 20vw;
     direction: rtl;
 }
-.save-button{
+
+.save-button {
     background: white;
     text-align: center;
     width: 60px;
@@ -136,93 +146,108 @@ const menu-back-ground-color :antiquewhite
 
 
 }
-.save-button-wrapper{
+
+.save-button-wrapper {
     display: flex;
     justify-content: center;
 }
-.choosen-app{
+
+.choosen-app {
     display: flex;
     height: max-content;
     flex-direction: column;
     align-items: center;
-    padding: 2vh 0 ;
+    padding: 2vh 0;
     margin: 0 0.5vw;
     background-color: #464b5e;
     color: white;
 }
+
 input[type='file'] {
     width: 0;
     height: 0;
     overflow: hidden;
     opacity: 0;
-  }
+}
 
-  .upload-button{
+.upload-button {
     top: 0;
     position: fixed;
-    padding-top: 2vh;
+    padding-top: 2.5vh;
     padding-left: 2vw;
-  }
-  .span-upload{
+}
+
+.span-upload {
     position: absolute;
     top: 39px;
     left: 15px;
-  }
-  .main{
+}
+
+.main {
     display: flex;
     background: white;
     position: absolute;
     width: 100%;
     top: 10vh;
     height: 90vh;
-  }
-  .seprator{
+}
+
+.seprator {
     display: flex;
     width: 100%;
     height: 5vh;
 
-  }
-  .wrapper-seprator{
+}
+
+.wrapper-seprator {
     display: flex;
     width: 100%;
     height: 5vh;
 
-  }
-  .left-div {
+}
+
+.left-div {
     border-right: #464b5e solid 2px;
     width: -webkit-fill-available;
 
 }
-   
-.right-div{
+
+.right-div {
     border-left: #464b5e solid 2px;
     width: -webkit-fill-available;
 
 
 }
-.specific-word-wrapper{
+
+.specific-word-wrapper {
     overflow-y: scroll;
     overflow-x: hidden;
 }
-.torch-logo
-{
+
+.torch-logo {
     font-family: cursive;
     font-size: xx-large;
     color: darkblue;
 }
-.container-name-upper-bar{
-    margin-top: 2vh;
+
+.container-name-upper-bar {
+    margin-top: 2.5vh;
     position: absolute;
 }
 
-.search-bar-wrapper{
+.search-bar-wrapper {
     height: 6vh;
     margin-top: 2vh;
     background-color: #d9d9d9;
 }
-.search-bar-input{
+
+.search-bar-input {
     height: 4vh;
     margin: 0.75vh 0 0.75vh 0.75vh;
     padding: 0;
     width: 30vw;
+}
+
+.search {
+    height: 10vh;
 }
