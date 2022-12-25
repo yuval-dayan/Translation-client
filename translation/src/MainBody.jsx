@@ -59,8 +59,6 @@ const MainBody = ({ containerName }) => {
     }, [data]);
     useEffect(() => {
         let dataLength = data.length < WORDS_IN_PAGE ? data.length : WORDS_IN_PAGE;
-        if(setPageNumberFromLocalStorage() != pageNumber)
-        {
             if (data && data.length > 0) {
                 let arr = [];
                 for (let i = 0; i < dataLength; i++) {
@@ -71,14 +69,17 @@ const MainBody = ({ containerName }) => {
                     let firstLabel = (pageNumber - 1) * WORDS_IN_PAGE;
                     let lastLabel = pageNumber == dataLength ? (((pageNumber - 1) * WORDS_IN_PAGE) + (data.length % WORDS_IN_PAGE)) : pageNumber * WORDS_IN_PAGE;
                     arr = [];
+                    let arrIndex = 0
                     for (let i = firstLabel; i < lastLabel; i++) {
-                        arr[i] = dataAfterSort[i];
+                        arr[arrIndex] = data[i];
+                        arrIndex++
                     }
                     setDataToPresent(arr);
                 }
         }
+        
             setDataLength(Math.ceil(data.length / WORDS_IN_PAGE))
-        }
+        
 
     }, [pageNumber]);
 
@@ -107,7 +108,7 @@ const MainBody = ({ containerName }) => {
             </div>
             <div className="specific-word-wrapper">
                 {dataToPresent.map((v, index) =>
-                    <SpecificWord key={(v && v.id) ? `specificWordId${v.id}` : `specificWordFromIndex${index}`} rowData={v} />
+                   <SpecificWord key={(v && v.id) ? `specificWordId${v.id}` : `specificWordFromIndex${index}`} rowData={v} />
                 )}
             </div>
             <PrevNextWord pageNumber={pageNumber} setPageNumber={setPageNumber} dataLength={dataLength} containerName={containerName} />

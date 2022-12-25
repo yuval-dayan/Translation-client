@@ -4,6 +4,7 @@ import MainBody from './MainBody';
 import './MainRow.css'
 import LeftMenu from './LeftMenu';
 import UpperBar from "./UpperBar";
+import Elbit_Systems from '../src/Icons/Elbit_Systems.png'
 function App() {
   const [translationArray, setTranslationArray] = useState([])
   const [disabled, setDisabled] = useState(true);
@@ -38,9 +39,6 @@ function App() {
 
   }, []);
 
-  const saveRootFile = (event) => {
-    console.log(event.target.value)
-  }
   const saveChangesToWordsFile = () => {
     if (translationArray.length > 0) {
       setDisabled(true);
@@ -66,8 +64,7 @@ function App() {
       <div className='main'>
       <div className='app-left-menu '>
           <label className='upload-button'>
-            {/* <input onChange={saveRootFile} type="file" /> */}
-            <span className='torch-logo'>Torch X Translation</span>
+            <img className='elbit-img' src={Elbit_Systems}/>
           </label>
           <div className='save-button-wrapper'>
            </div>

@@ -7,12 +7,13 @@ const SpecificWord = ({ rowData }) => {
 
     const [checked, setChecked] = useState(rowData && rowData.translated ? rowData.translated : false);
     return (
-        <div className="specificRow">
-            {checked && <div className="checked-icon" > <CheckIcon /> </div>}
-            <div className="label">
-                {rowData && rowData.englishWord}
-            </div >
-            {rowData && rowData.translation && <div className="dropDown-wrapper" > <DropDown rowData={rowData} setChecked={setChecked} /></div>}
+        <div>{rowData && rowData.id && <div className="specificRow">
+        {checked && <div className="checked-icon" > <CheckIcon /> </div>}
+        <div className="label">
+            {rowData && (rowData.englishWord || rowData.label)}
+        </div >
+        {rowData && rowData.translation && <div className="dropDown-wrapper" > <DropDown rowData={rowData} setChecked={setChecked} /></div>}
+    </div>}
         </div>
     )
 }

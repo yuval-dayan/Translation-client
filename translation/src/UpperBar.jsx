@@ -1,5 +1,5 @@
 import { Button } from "@mui/material";
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 const UpperBar = ({ containerName, saveChangesToWordsFile, disabled }) => {
 

@@ -70,6 +70,7 @@ const menu-back-ground-color :antiquewhite .mainRow {
     justify-content: space-around;
     margin: 0 6px;
     border: black solid 1px;
+    border-radius: 3px;
 }
 
 .main-body {
@@ -161,6 +162,7 @@ const menu-back-ground-color :antiquewhite .mainRow {
     margin: 0 0.5vw;
     background-color: #464b5e;
     color: white;
+    border-radius: 3px;
 }
 
 input[type='file'] {
@@ -247,7 +249,27 @@ input[type='file'] {
     padding: 0;
     width: 30vw;
 }
-
 .search {
     height: 10vh;
+}
+.filter-wrapper{
+    position: relative;
+    left: 20%;
+    top: 10px;
+}
+.filter-icon{
+    display: inline;
+    position: relative;
+    top: 5px;
+    right: 2px;
+}
+.choosen-filter{
+    font-weight: 700;
+    text-decoration: underline black 1px;
+}
+.elbit-img{
+    height: 7vh;
+    position: absolute;
+    top: 0;
+    margin: 15px 0;
 }
