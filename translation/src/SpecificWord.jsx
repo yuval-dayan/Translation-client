@@ -10,7 +10,7 @@ const SpecificWord = ({ rowData }) => {
         <div className="specificRow">
             {checked && <div className="checked-icon" > <CheckIcon /> </div>}
             <div className="label">
-                {rowData && rowData.label}
+                {rowData && rowData.englishWord}
             </div >
             {rowData && rowData.translation && <div className="dropDown-wrapper" > <DropDown rowData={rowData} setChecked={setChecked} /></div>}
         </div>

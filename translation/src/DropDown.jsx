@@ -59,7 +59,7 @@ export default function DropDown({ rowData, setChecked }) {
     }, []);
     useEffect(() => {
         if (valueFromRow && valueSet.length == 0) {
-            fetch(`http://localhost:7779/bulgaria/translation?regexName=${valueFromRow.label}`)
+            fetch(`http://localhost:7779/bulgaria/translation?regexName=${valueFromRow.englishWord}`)
                 .then(response => response.json()).then(data1 => setValueSet(data1)).catch(e => console.error(e))
         }
     }, []);

@@ -5,8 +5,18 @@ import SpecificWord from "./SpecificWord";
 
 
 const MainBody = ({ containerName }) => {
-    const [wordEntered, setWordEntered] = useState("");
-    const [pageNumber, setPageNumber] = useState(1);
+
+    const setPageNumberFromLocalStorage = () => {
+        let appsFromLS = JSON.parse(localStorage.getItem('applicationsStatus'))
+        if (appsFromLS && appsFromLS.length > 0) {
+            let currentContainer = appsFromLS && appsFromLS.find(app => (app && app.name) == containerName)
+            if (currentContainer && currentContainer.pageNumber)
+                return currentContainer.pageNumber;
+        }
+        return 1;
+    }
+    const WORDS_IN_PAGE = 20;
+    const [pageNumber, setPageNumber] = useState(setPageNumberFromLocalStorage() ?setPageNumberFromLocalStorage():1 );
     const [data, setData] = useState([])
     const [dataToPresent, setDataToPresent] = useState([])
     const [dataLength, setDataLength] = useState(0);
@@ -21,57 +31,70 @@ const MainBody = ({ containerName }) => {
         changeDataByContainerName()
     }, []);
     useEffect(() => {
-        setPageNumber(setPageNumberFromLocalStorage)
+        setPageNumber(setPageNumberFromLocalStorage())
         changeDataByContainerName()
     }, [containerName]);
 
     useEffect(() => {
-        let dataLength = data.length < 20 ? data.length : 20;
-        if (data && data.length > 0) {
-            let arr = [];
-            for (let i = 0; i < dataLength; i++) {
-                arr[i] = data[i];
-            }
-            if (arr.length > 0) {
-                let dataAfterSort = arr.sort(function (a, b) { return a.id - b.id });
-                let firstLabel = (pageNumber - 1) * 20;
-                let lastLabel = pageNumber == dataLength ? (((pageNumber - 1) * 20) + (data.length % 20)) : pageNumber * 20;
-                arr = [];
-                for (let i = firstLabel; i < lastLabel; i++) {
-                    arr[i] = dataAfterSort[i];
+        let dataLength = data.length < WORDS_IN_PAGE ? data.length : WORDS_IN_PAGE;
+            if (data && data.length > 0) {
+                let arr = [];
+                for (let i = 0; i < dataLength; i++) {
+                    arr[i] = data[i];
                 }
-                setDataToPresent(arr);
-            }
-            // if(isFilter)
-            // {
-            //     setDataToPresent(arr);
-            // }
-            setDataLength(Math.ceil(data.length / 20))
+                if (arr.length > 0) {
+                    let dataAfterSort = arr.sort(function (a, b) { return a.id - b.id });
+                    let firstLabel = (pageNumber - 1) * WORDS_IN_PAGE;
+                    let lastLabel = pageNumber == dataLength ? (((pageNumber - 1) * WORDS_IN_PAGE) + (data.length % WORDS_IN_PAGE)) : pageNumber * WORDS_IN_PAGE;
+                    arr = [];
+                    for (let i = firstLabel; i < lastLabel; i++) {
+                        arr[i] = dataAfterSort[i];
+                    }
+                    setDataToPresent(arr);
+                }
+        }
+            setDataLength(Math.ceil(data.length / WORDS_IN_PAGE))
+        
+
+    }, [data]);
+    useEffect(() => {
+        let dataLength = data.length < WORDS_IN_PAGE ? data.length : WORDS_IN_PAGE;
+        if(setPageNumberFromLocalStorage() != pageNumber)
+        {
+            if (data && data.length > 0) {
+                let arr = [];
+                for (let i = 0; i < dataLength; i++) {
+                    arr[i] = data[i];
+                }
+                if (arr.length > 0) {
+                    let dataAfterSort = arr.sort(function (a, b) { return a.id - b.id });
+                    let firstLabel = (pageNumber - 1) * WORDS_IN_PAGE;
+                    let lastLabel = pageNumber == dataLength ? (((pageNumber - 1) * WORDS_IN_PAGE) + (data.length % WORDS_IN_PAGE)) : pageNumber * WORDS_IN_PAGE;
+                    arr = [];
+                    for (let i = firstLabel; i < lastLabel; i++) {
+                        arr[i] = dataAfterSort[i];
+                    }
+                    setDataToPresent(arr);
+                }
+        }
+            setDataLength(Math.ceil(data.length / WORDS_IN_PAGE))
         }
 
-    }, [data, pageNumber]);
+    }, [pageNumber]);
 
     useEffect(() => {
         let arr = [];
         if (data.length > 0) {
             let dataAfterSort = data.sort(function (a, b) { return a.id - b.id });
-            let firstLabel = (pageNumber - 1) * 20;
-            let lastLabel = pageNumber == dataLength ? (((pageNumber - 1) * 20) + (data.length % 20)) : pageNumber * 20;
+            let firstLabel = (pageNumber - 1) * WORDS_IN_PAGE;
+            let lastLabel = pageNumber == dataLength ? (((pageNumber - 1) * WORDS_IN_PAGE) + (data.length % WORDS_IN_PAGE)) : pageNumber * WORDS_IN_PAGE;
             for (let i = firstLabel; i < lastLabel; i++) {
                 arr[i] = dataAfterSort[i];
             }
             setDataToPresent(arr);
         }
-    }, [pageNumber, dataLength]);
-    const setPageNumberFromLocalStorage = () => {
-        let appsFromLS = JSON.parse(localStorage.getItem('applicationsStatus'))
-        if (appsFromLS && appsFromLS.length > 0) {
-            let currentContainer = appsFromLS && appsFromLS.find(app => (app && app.name) == containerName)
-            if (currentContainer && currentContainer.pageNumber)
-                return currentContainer.pageNumber;
-        }
-        return 1;
-    }
+    }, [dataLength]);
+
 
     return (
         <div className="main-body">
