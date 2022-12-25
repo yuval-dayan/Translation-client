@@ -10,8 +10,8 @@ const LeftMenu = ({ applicationsStatus, setContainerName, containerName }) => {
     }
     return (
         <div className="left-menu">
-            {applicationsStatus.length && applicationsStatus.map((app) =>
-                <React.Fragment>
+            {applicationsStatus.length && applicationsStatus.map((app,index) =>
+                <React.Fragment key={`${app.name} ${index}`}>
                     <div className="wrapper-seprator">
                         <div className="seprator right-div"></div>
                         <div className="seperator left-div"></div>

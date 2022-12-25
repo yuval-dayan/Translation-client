@@ -4,10 +4,9 @@ import SearchIcon from '@mui/icons-material/Search';
 import { Button } from "@mui/material";
 
 
-function SearchBar({ setData, data, setIsFilter, changeDataByContainerName, containerName }) {
+function SearchBar({ setDataToPresent,setData, data, setIsFilter, changeDataByContainerName, containerName }) {
   const [wordEntered, setWordEntered] = useState("");
   const [noResultFound, setNoResultFound] = useState("");
-
   const [cleanSearchDisabled, setCleanSearchDisabled] = useState(true);
 
   const handleFilter = () => {
@@ -15,10 +14,8 @@ function SearchBar({ setData, data, setIsFilter, changeDataByContainerName, cont
       return value.label.toLowerCase().includes(wordEntered.toLowerCase());
     });
     if (newFilter.length == 0) {
-      setNoResultFound("No result!")
-      setWordEntered("")
+      setDataToPresent([]);
       setIsFilter(false)
-
     }
     else
       setData(newFilter);
@@ -68,8 +65,6 @@ function SearchBar({ setData, data, setIsFilter, changeDataByContainerName, cont
           <SearchIcon onClick={handleFilter} />
         </div>
         <Button disabled={cleanSearchDisabled} onClick={() => { changeDataAndCleanSearch() }}>Clear</Button>
-        <div className="no-result">
-          <span>{noResultFound}</span></div>
       </div>
     </div>
   );

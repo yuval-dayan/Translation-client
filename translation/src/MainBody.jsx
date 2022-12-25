@@ -99,7 +99,7 @@ const MainBody = ({ containerName }) => {
     return (
         <div className="main-body">
             <div className="search">
-                <SearchBar data={data} setData={setData} isFilter={isFilter} setIsFilter={setIsFilter} changeDataByContainerName={changeDataByContainerName} containerName={containerName} />
+                <SearchBar setDataToPresent={setDataToPresent} data={data} setData={setData} isFilter={isFilter} setIsFilter={setIsFilter} changeDataByContainerName={changeDataByContainerName} containerName={containerName} />
             </div>
             <div className="main-body-title">
                 <div >Label</div>
