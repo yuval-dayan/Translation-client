@@ -15,6 +15,7 @@ const MainBody = ({ containerName }) => {
         }
         return 1;
     }
+    const appFromLocalStorage = (JSON.parse(localStorage.getItem('applicationsStatus')))
     const WORDS_IN_PAGE = 20;
     const [pageNumber, setPageNumber] = useState(setPageNumberFromLocalStorage() ?setPageNumberFromLocalStorage():1 );
     const [data, setData] = useState([])
@@ -39,9 +40,9 @@ const MainBody = ({ containerName }) => {
         let dataLength = data.length < WORDS_IN_PAGE ? data.length : WORDS_IN_PAGE;
             if (data && data.length > 0) {
                 let arr = [];
-                for (let i = 0; i < dataLength; i++) {
-                    arr[i] = data[i];
-                }
+                // for (let i = 0; i < dataLength; i++) {
+                //     arr[i] = data[i];
+                // }
                 if (arr.length > 0) {
                     let dataAfterSort = arr.sort(function (a, b) { return a.id - b.id });
                     let firstLabel = (pageNumber - 1) * WORDS_IN_PAGE;
@@ -61,24 +62,25 @@ const MainBody = ({ containerName }) => {
         let dataLength = data.length < WORDS_IN_PAGE ? data.length : WORDS_IN_PAGE;
             if (data && data.length > 0) {
                 let arr = [];
-                for (let i = 0; i < dataLength; i++) {
-                    arr[i] = data[i];
+                if(pageNumber != setPageNumberFromLocalStorage() )
+                {
+                       let firstLabel = (pageNumber - 1) * WORDS_IN_PAGE;
+                        let lastLabel = pageNumber == dataLength ? (((pageNumber - 1) * WORDS_IN_PAGE) + (data.length % WORDS_IN_PAGE)) : pageNumber * WORDS_IN_PAGE;
+                        arr = [];
+                        let arrIndex = 0
+                        for (let i = firstLabel; i < lastLabel; i++) {
+                            arr[arrIndex] = data[i];
+                            arrIndex++
+                        }
+                        setDataToPresent(arr);
+            }
+            let appIndex = appFromLocalStorage.findIndex(obj => { return obj.name == containerName })
+            let appToLocalStorage = appFromLocalStorage;
+            appToLocalStorage[appIndex] = { ...appToLocalStorage[appIndex], pageNumber: pageNumber }
+            localStorage.setItem('applicationsStatus', JSON.stringify(appToLocalStorage))
                 }
-                if (arr.length > 0) {
-                    let dataAfterSort = arr.sort(function (a, b) { return a.id - b.id });
-                    let firstLabel = (pageNumber - 1) * WORDS_IN_PAGE;
-                    let lastLabel = pageNumber == dataLength ? (((pageNumber - 1) * WORDS_IN_PAGE) + (data.length % WORDS_IN_PAGE)) : pageNumber * WORDS_IN_PAGE;
-                    arr = [];
-                    let arrIndex = 0
-                    for (let i = firstLabel; i < lastLabel; i++) {
-                        arr[arrIndex] = data[i];
-                        arrIndex++
-                    }
-                    setDataToPresent(arr);
-                }
-        }
-        
-            setDataLength(Math.ceil(data.length / WORDS_IN_PAGE))
+
+        setDataLength(Math.ceil(data.length / WORDS_IN_PAGE))
         
 
     }, [pageNumber]);

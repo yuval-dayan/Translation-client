@@ -4,8 +4,6 @@ import { Button } from '@mui/material';
 const PrevNextWord = ({ pageNumber, setPageNumber, dataLength, containerName }) => {
     const [nextButtonDisabled, setNextButtonDisabled] = useState(false)
     const [prevButtonDisabled, setPrevButtonDisabled] = useState(false)
-    const appFromLocalStorage = (JSON.parse(localStorage.getItem('applicationsStatus')))
-
     const nextPage = () => {
         setPageNumber(pageNumber + 1)
         setPrevButtonDisabled(false);
@@ -18,13 +16,8 @@ const PrevNextWord = ({ pageNumber, setPageNumber, dataLength, containerName }) 
     }
     useEffect(() => {
         if (pageNumber) {
-            let appIndex = appFromLocalStorage.findIndex(obj => { return obj.name == containerName })
-            let appToLocalStorage = appFromLocalStorage;
-            appToLocalStorage[appIndex] = { ...appToLocalStorage[appIndex], pageNumber: pageNumber }
-            localStorage.setItem('applicationsStatus', JSON.stringify(appToLocalStorage))
             let prevButton = (pageNumber == 1)
             setPrevButtonDisabled(prevButton)
-
         }
 
     }, [pageNumber]);
