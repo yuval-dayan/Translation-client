@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import PrevNextWord from "./PrevNextWords";
 import SearchBar from "./SearchBar";
 import SpecificWord from "./SpecificWord";
+import SortBy from "./SortBy";
+import Filter from "./FIlter";
 
 
 const MainBody = ({ containerName }) => {
@@ -38,22 +40,18 @@ const MainBody = ({ containerName }) => {
 
     useEffect(() => {
         let dataLength = data.length < WORDS_IN_PAGE ? data.length : WORDS_IN_PAGE;
-            if (data && data.length > 0) {
                 let arr = [];
-                // for (let i = 0; i < dataLength; i++) {
-                //     arr[i] = data[i];
-                // }
-                if (arr.length > 0) {
-                    let dataAfterSort = arr.sort(function (a, b) { return a.id - b.id });
                     let firstLabel = (pageNumber - 1) * WORDS_IN_PAGE;
                     let lastLabel = pageNumber == dataLength ? (((pageNumber - 1) * WORDS_IN_PAGE) + (data.length % WORDS_IN_PAGE)) : pageNumber * WORDS_IN_PAGE;
                     arr = [];
                     for (let i = firstLabel; i < lastLabel; i++) {
-                        arr[i] = dataAfterSort[i];
+                        arr[i] = data[i];
                     }
-                    setDataToPresent(arr);
-                }
-        }
+                    if(arr.length >0)
+                    {
+                        arr = arr.sort(function (a, b) { return a.id - b.id });
+                    }
+                setDataToPresent(arr);
             setDataLength(Math.ceil(data.length / WORDS_IN_PAGE))
         
 
@@ -94,8 +92,8 @@ const MainBody = ({ containerName }) => {
             for (let i = firstLabel; i < lastLabel; i++) {
                 arr[i] = dataAfterSort[i];
             }
-            setDataToPresent(arr);
         }
+        setDataToPresent(arr);
     }, [dataLength]);
 
 
@@ -103,6 +101,8 @@ const MainBody = ({ containerName }) => {
         <div className="main-body">
             <div className="search">
                 <SearchBar setDataToPresent={setDataToPresent} data={data} setData={setData} isFilter={isFilter} setIsFilter={setIsFilter} changeDataByContainerName={changeDataByContainerName} containerName={containerName} />
+                <SortBy/>
+                <Filter data={data} setData={setData} changeDataByContainerName={changeDataByContainerName} />
             </div>
             <div className="main-body-title">
                 <div >Label</div>

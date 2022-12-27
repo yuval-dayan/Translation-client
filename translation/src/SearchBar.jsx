@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./SearchBar.css";
 import SearchIcon from '@mui/icons-material/Search';
 import { Button } from "@mui/material";
-import Filter from "./FIlter";
+
 
 
 function SearchBar({ setDataToPresent,setData, data, setIsFilter, changeDataByContainerName, containerName }) {
@@ -66,7 +66,7 @@ function SearchBar({ setDataToPresent,setData, data, setIsFilter, changeDataByCo
           <SearchIcon onClick={handleFilter} />
         </div>
         <Button disabled={cleanSearchDisabled} onClick={() => { changeDataAndCleanSearch() }}>Clear</Button>
-        <Filter/>
+       
       </div>
     </div>
   );

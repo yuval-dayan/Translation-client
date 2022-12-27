@@ -52,7 +52,6 @@ const menu-back-ground-color :antiquewhite .mainRow {
 
 .app-left-menu {
     position: relative;
-    background-color: #d9d9d9;
     width: 20%;
     display: flex;
     flex-direction: column;
@@ -64,19 +63,20 @@ const menu-back-ground-color :antiquewhite .mainRow {
 }
 
 .left-menu-options {
-    height: 50px;
     background-color: aliceblue;
-    display: flex;
     justify-content: space-around;
-    margin: 0 6px;
     border: black solid 1px;
     border-radius: 3px;
+    padding: 2vh 0;
+    margin: 0 1.5vw
+
 }
+
 
 .main-body {
     display: flex;
     flex-direction: column;
-    width: inherit;
+    width: 80%;
     padding: 0 2vw;
 }
 
@@ -124,7 +124,9 @@ const menu-back-ground-color :antiquewhite .mainRow {
     overflow-y: scroll;
     overflow-x: hidden;
     width: 20vw;
-    direction: rtl;
+    margin: 0 0 1px 0px;
+    direction: ltr;
+    box-shadow: rgb(100 100 111 / 20%) 0px 7px 29px 0px;
 }
 
 .save-button {
@@ -159,10 +161,10 @@ const menu-back-ground-color :antiquewhite .mainRow {
     flex-direction: column;
     align-items: center;
     padding: 2vh 0;
-    margin: 0 0.5vw;
-    background-color: #464b5e;
-    color: white;
+    margin: 0 1.5vw;
+    color: black;
     border-radius: 3px;
+    box-shadow: rgb(0 0 0 / 25%) 0px 54px 55px, rgb(0 0 0 / 12%) 0px -12px 30px, rgb(0 0 0 / 12%) 0px 4px 6px, rgb(0 0 0 / 17%) 0px 12px 13px, rgb(0 0 0 / 9%) 0px -3px 5px;
 }
 
 input[type='file'] {
@@ -241,7 +243,6 @@ input[type='file'] {
 .search-bar-wrapper {
     height: 6vh;
     margin-top: 2vh;
-    background-color: #d9d9d9;
 }
 
 .search-bar-input {
@@ -252,14 +253,23 @@ input[type='file'] {
 }
 .search {
     height: 10vh;
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    position: relative;
+    top: 2vh;
+    margin: 0 2vw;
+    padding: 0 2vw;
+    box-shadow: rgb(100 100 111 / 20%) 0px 7px 29px 0px;
+
 }
 .filter-wrapper{
-    position: relative;
-    left: 20%;
-    top: 10px;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-around;
 }
 .filter-icon{
-    display: inline;
+    display: flex;
     position: relative;
     top: 5px;
     right: 2px;
@@ -273,4 +283,23 @@ input[type='file'] {
     position: absolute;
     top: 0;
     margin: 15px 0;
+}
+.sort-by{
+    width: 5vw;
+    display: inline;
+}
+.sort-by-wrapper{
+    width: 10vw;
+    display: flex;
+    flex-flow: column;
+    place-content: space-between;
+    position: relative;
+    bottom: 5px;
+}
+
+.sort-by-icon{
+    position: relative;
+    right: 2px;
+    display: inline;
+    top: 26px;
 }

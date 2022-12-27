@@ -1,7 +1,8 @@
 .searchInputs {
-  margin-top: 105px;
   display: flex;
-  padding: 5px;
+  border: solid 1.5px;
+  margin: 15px;
+  border-radius: 5px;
 }
 
 .search input {
@@ -42,7 +43,5 @@ a:hover {
 }
 
 .search-wrapper {
-  background-color: #949494;
-  position: relative;
-  top: -75px;
+
 }

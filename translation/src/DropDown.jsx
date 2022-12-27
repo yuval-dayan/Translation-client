@@ -74,17 +74,20 @@ export default function DropDown({ rowData, setChecked }) {
     useEffect(() => {
         {
             let newOptions = [];
-            if (valueSet.length > 0 && rowData && rowData.translation) {
+            if (valueSet.length > 0) {
 
                 for (let i = 0; i < valueSet.length; i++) {
                     newOptions[i] = { value: valueSet[i].translation, label: valueSet[i].translation }
                 }
-                newOptions = [{ value: rowData.translation, label: rowData.translation }, ...newOptions, { value: 'Other', label: 'Other' }]
+            }
+            else if(rowData && rowData.translation)
+            {
+                newOptions = [{ value: rowData.translation, label: rowData.translation }, ...newOptions]
 
             }
-            else {
-                newOptions = [{ value: OTHER, label: OTHER }, ...newOptions]
-            }
+            
+            newOptions = [{ value: OTHER, label: OTHER }, ...newOptions]
+            
             setOptions(newOptions);
 
 
