@@ -17,18 +17,16 @@ const SortBy = () => {
   
     return (
         <div className="sort-by-wrapper">
-            <div>
-            <div className="sort-by-icon">            <SortIcon/>
+            <div style={    {margin:13}}>
+            <div className="sort-by-icon">    <div className="sort-by-icon-wrapper">    <SortIcon/> </div>Sort By :     
 </div>
         <div className="sort-by">
         <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
-        <InputLabel id="demo-simple-select-standard-label">Sory By</InputLabel>
         <Select
-          labelId="demo-simple-select-standard-label"
-          id="demo-simple-select-standard"
           value={sortBy}
           onChange={handleChange}
-          label="Sort By"
+          displayEmpty
+          inputProps={{ 'aria-label': 'Without label' }}
         >
           <MenuItem value="Non Translated">Non Translated</MenuItem>
           <MenuItem value="Translated by me">Translated by me</MenuItem>

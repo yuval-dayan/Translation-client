@@ -143,11 +143,7 @@ const menu-back-ground-color :antiquewhite .mainRow {
     color: white;
     font-weight: bold;
     text-decoration: none;
-    position: absolute;
-    right: 44px;
-    top: 2vh;
-
-
+    margin: 18px 10px;
 }
 
 .save-button-wrapper {
@@ -290,16 +286,32 @@ input[type='file'] {
 }
 .sort-by-wrapper{
     width: 10vw;
-    display: flex;
     flex-flow: column;
     place-content: space-between;
     position: relative;
     bottom: 5px;
+    margin: 13px;
+    display: flex;
+    width: max-content;
 }
 
 .sort-by-icon{
     position: relative;
     right: 2px;
     display: inline;
-    top: 26px;
+    top: 2px;
+}
+.sort-by-icon-wrapper{
+    display: inline;
+    position: relative;
+    top: 7px;
+}
+.icons-wrapper{
+    position: absolute;
+    margin: 0 1vw;
+    right: 0;
+    width: 50%;
+    height: 80px;
+    display: flex;
+    flex-flow: row-reverse;
 }
