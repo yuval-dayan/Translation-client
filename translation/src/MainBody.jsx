@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import PrevNextWord from "./PrevNextWords";
+import LowerBar from "./LowerBar";
 import SearchBar from "./SearchBar";
 import SpecificWord from "./SpecificWord";
 import SortBy from "./SortBy";
@@ -113,7 +113,7 @@ const MainBody = ({ containerName }) => {
                    <SpecificWord key={(v && v.id) ? `specificWordId${v.id}` : `specificWordFromIndex${index}`} rowData={v} />
                 )}
             </div>
-            <PrevNextWord pageNumber={pageNumber} setPageNumber={setPageNumber} dataLength={dataLength} containerName={containerName} />
+            <LowerBar pageNumber={pageNumber} setPageNumber={setPageNumber} dataLength={dataLength} containerName={containerName} />
 
         </div>
 

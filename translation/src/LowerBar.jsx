@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Button } from '@mui/material';
 
-const PrevNextWord = ({ pageNumber, setPageNumber, dataLength, containerName }) => {
+const LowerBar = ({ pageNumber, setPageNumber, dataLength, containerName }) => {
     const [nextButtonDisabled, setNextButtonDisabled] = useState(false)
     const [prevButtonDisabled, setPrevButtonDisabled] = useState(false)
     const nextPage = () => {
@@ -40,4 +40,4 @@ const PrevNextWord = ({ pageNumber, setPageNumber, dataLength, containerName }) 
 
 
 }
-export default PrevNextWord;
+export default LowerBar;
