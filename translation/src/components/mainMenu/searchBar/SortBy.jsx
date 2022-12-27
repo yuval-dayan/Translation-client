@@ -18,7 +18,7 @@ const SortBy = () => {
     return (
         <div className="sort-by-wrapper">
             <div style={    {margin:13}}>
-            <div className="sort-by-icon">    <div className="sort-by-icon-wrapper">    <SortIcon/> </div>Sort By :     
+            <div className="sort-by-icon">    <div className="sort-by-icon-wrapper">    <SortIcon/> </div> Sort By :     
 </div>
         <div className="sort-by">
         <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>

@@ -1,42 +1,51 @@
 import React, { useState } from "react";
 import '../../../components/MainRow.css'
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
+
 
 const Filter = ({data,setData,changeDataByContainerName}) => {
-    const [all, setAll] = useState(true)
-    const [flag, setFlag] = useState(false)
-    const [nonTranslation, setNonTranslation] = useState(false);
+    const [filterBy, setFilterBy] = useState('');
+
 
     const changeChoosenFilter = (event) => {
-        switch (event.target.title) {
-            case 'ALL':
-                setAll(true)
-                setFlag(false)
-                setNonTranslation(false)
+        setFilterBy(event.target.value)
+        switch (event.target.value) {
+            case 'All':
                 changeDataByContainerName()
                 break;
-            case 'FLAG':
-                setAll(false)
-                setFlag(true)
-                setNonTranslation(false)
+            case 'Flag':     
                 break;
-            case 'NON_TRANSLATION':
-                setAll(false)
-                setFlag(false)
-                setNonTranslation(true)
+            case 'Not Translated':
                 setData(data.filter(word => word.translated == false))
                 break;
         }
 
     }
     return (
-        <div className="filter-wrapper">
-            <div className="filter-icon">
-                <FilterAltIcon />
-                <div>
-            <span> Filter: </span><span title="ALL" className={all ? "choosen-filter" : ""} onClick={(e) => { changeChoosenFilter(e) }}>All</span><span> / </span><span className={flag ? "choosen-filter" : ""} onClick={(e) => { changeChoosenFilter(e) }} title="FLAG">Flag</span><span> / </span><span className={nonTranslation ? "choosen-filter" : ""} onClick={(e) => { changeChoosenFilter(e) }} title="NON_TRANSLATION">Not Translated</span>
-        </div>
-        </div></div>
+        <div className="sort-by-wrapper">
+        <div style={    {margin:13}}>
+        <div className="sort-by-icon">    <div className="sort-by-icon-wrapper">    <FilterAltIcon/> </div>Filter :     
+</div>
+            <div className="sort-by">
+            <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
+            <Select
+              value={filterBy}
+              onChange={changeChoosenFilter}
+              displayEmpty
+              inputProps={{ 'aria-label': 'Without label' }}
+            >
+              <MenuItem value="All">All</MenuItem>
+              <MenuItem value="Flag">Flag</MenuItem>
+              <MenuItem value="Not Translated">Not Translated </MenuItem>
+              <MenuItem value="">
+                <em>None</em>  </MenuItem>      </Select>
+            </FormControl>
+          </div>
+          </div>
+          </div>
 
     )
 }

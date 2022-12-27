@@ -76,7 +76,7 @@ const menu-back-ground-color :antiquewhite .mainRow {
 .main-body {
     display: flex;
     flex-direction: column;
-    width: 80%;
+    width: 75%;
     padding: 0 2vw;
 }
 
@@ -292,7 +292,7 @@ input[type='file'] {
     bottom: 5px;
     margin: 13px;
     display: flex;
-    width: max-content;
+    width: 18vw;
 }
 
 .sort-by-icon{
@@ -314,4 +314,8 @@ input[type='file'] {
     height: 80px;
     display: flex;
     flex-flow: row-reverse;
+}
+.container-name{
+    text-transform: none;
+    font-size: 18px;
 }
