@@ -1,9 +1,9 @@
 import { TranslationContext } from './context/TranslationContext'
 import { useEffect, useState } from 'react';
-import MainBody from './MainBody';
-import './MainRow.css'
-import LeftMenu from './LeftMenu';
-import UpperBar from "./UpperBar";
+import MainBody from './components/mainMenu/MainBody';
+import '../src/components/MainRow.css'
+import LeftMenu from './components/leftMenu/LeftMenu';
+import UpperBar from "./components/upperBarLowerBar/UpperBar";
 import Elbit_Systems from '../src/Icons/Elbit_Systems.png'
 function App() {
   const [translationArray, setTranslationArray] = useState([])

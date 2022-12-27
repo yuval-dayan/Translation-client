@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import './MainRow.css'
+import '../../components/MainRow.css'
 import DropDown from "./DropDown";
 import CheckIcon from '@mui/icons-material/Check';
 

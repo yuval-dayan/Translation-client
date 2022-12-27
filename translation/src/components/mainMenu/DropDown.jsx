@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { TranslationContext } from "./context/TranslationContext";
+import { TranslationContext } from "../../context/TranslationContext";
 import Select from 'react-select';
 import TextField from '@mui/material/TextField';
 import IconButton from '@mui/material/IconButton';

@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import LowerBar from "./LowerBar";
-import SearchBar from "./SearchBar";
+import LowerBar from "../upperBarLowerBar/LowerBar";
+import SearchBar from "./searchBar/SearchBar";
 import SpecificWord from "./SpecificWord";
-import SortBy from "./SortBy";
-import Filter from "./FIlter";
+import SortBy from "./searchBar/SortBy";
+import Filter from "./searchBar/Filter";
 
 
 const MainBody = ({ containerName }) => {
