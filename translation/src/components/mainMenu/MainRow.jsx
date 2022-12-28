@@ -5,7 +5,7 @@ import SpecificWord from "./SpecificWord";
 const MainRow = () => {
     const [data, setData] = useState([])
     useEffect(() => {
-        fetch('http://localhost:7779/words')
+        fetch('http://localhost:7776/words')
             .then(response => response.json()).then(data => setData(data)).catch(e => console.error(e))
 
     }, []);

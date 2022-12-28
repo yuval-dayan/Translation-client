@@ -18,7 +18,7 @@ const LeftMenu = ({ applicationsStatus, setContainerName, containerName }) => {
                         <div className="seperator right-div"></div>
                     </div>
                     <div className={app.name == containerName ? 'left-menu-options choosen-app ' : 'left-menu-options'} key={(app && app.name)}>
-                        <Button style={{ width: 300 }} value={app.name} onClick={changeApp} color={app.nonTranslatedWords > 0 ? 'warning' : 'info'}> {app.name}</Button>
+                        <Button style={{ width: 300 ,color:"black"}} value={app.name} onClick={changeApp} color={app.nonTranslatedWords > 0 ? 'warning' : 'info'}> {app.name}</Button>
                         <ProgressBar app={app} containerName={containerName}/>
                     </div></React.Fragment>
             )}

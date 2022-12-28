@@ -26,7 +26,7 @@ const MainBody = ({ containerName }) => {
     const [isFilter, setIsFilter] = useState(false);
     const changeDataByContainerName = () => {
         if (containerName) {
-            fetch(`http://localhost:7779/words/projectName/${containerName}`)
+            fetch(`http://localhost:7776/words/projectName/${containerName}`)
                 .then(response => response.json()).then(data => setData(data)).catch(e => console.error(e))
         }
     }

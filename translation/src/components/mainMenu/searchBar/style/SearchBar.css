@@ -3,6 +3,7 @@
   border: solid 1.5px;
   margin: 15px;
   border-radius: 5px;
+  height: 4vh;
 }
 
 .search input {
@@ -12,15 +13,12 @@
   border-top-right-radius: 0px;
   border-bottom-right-radius: 0px;
   font-size: 18px;
-  padding: 15px;
+  padding: 4px;
   height: 30px;
   width: 300px;
 }
 
 .searchIcon {
-  height: 60px;
-  width: 50px;
-  background-color: white;
   display: grid;
   place-items: center;
 }
@@ -30,7 +28,7 @@ input:focus {
 }
 
 .searchIcon svg {
-  font-size: 35px;
+  font-size: 26px;
 }
 
 
@@ -43,5 +41,5 @@ a:hover {
 }
 
 .search-wrapper {
-
+  margin: 9px;
 }

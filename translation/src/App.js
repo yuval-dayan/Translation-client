@@ -34,7 +34,7 @@ function App() {
   }, [applicationsStatus]);
 
   useEffect(() => {
-    fetch('http://localhost:7779/words/status')
+    fetch('http://localhost:7776/words/status')
       .then(response => response.json()).then(data => setApplicationsStatus(data)).catch(e => console.error(e))
 
   }, []);
@@ -50,8 +50,8 @@ function App() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(wordsToUpdate)
       };
-      fetch(`http://localhost:7779/words/`, requestOptions)
-        .then(response => response.json()).then(fetch('http://localhost:7779/words/status')
+      fetch(`http://localhost:7776/words/`, requestOptions)
+        .then(response => response.json()).then(fetch('http://localhost:7776/words/status')
         .then(response => response.json()).then(data => setApplicationsStatus(data)).catch(e => console.error(e)))
     
     }
