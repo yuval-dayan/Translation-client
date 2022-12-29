@@ -114,11 +114,19 @@ const menu-back-ground-color :antiquewhite .mainRow {
 .other-translation {
     display: flex;
     justify-content: space-around;
+    height: 38px;
+}
+.other-translation-specific-row{
+    position: relative;
+    top: -5px;
+    height: 42px;
 }
 
 .other-translation-new-word {
-    width: 80%;
-}
+
+    position: relative;
+    top: 12px;
+    width: -webkit-fill-available;}
 
 .left-menu {
     overflow-y: scroll;
