@@ -47,7 +47,7 @@ const ProgressBar = ({app,containerName}) => {
             <div  style={{"width":`${defaultVal}%` }} className="progress-bar-default"></div>
         </div>
         {app.name == containerName &&  <div><div className="words-info">{app.nonTranslatedWords} / {totalWords} words</div> <div className="words-info confirm"> <CheckIcon sx={{color:'#00c853'}} fontSize="x-small" /> {app.translatedWords} Confirm</div><div className="words-info flag"> <FlagIcon sx={{color:'#ff6d00'}} fontSize="x-small" /> Flag?</div></div>}
-        {app.name != containerName &&  <div className="words-info-wrapper"><div className="words-info confirm"> <CheckIcon sx={{color:'#00c853'}} fontSize="x-small" /> {app.translatedWords} Confirm?</div><span className="words-info-seperator"></span><div className="words-info flag"> <FlagIcon sx={{color:'#ff6d00'}} fontSize="x-small" /> Flag?</div></div>}
+        {app.name != containerName &&  <div className="words-info-wrapper"><div className="words-info confirm"> <CheckIcon sx={{color:'#00c853'}} fontSize="x-small" /> {app.translatedWords} Confirm</div><span className="words-info-seperator"></span><div className="words-info flag"> <FlagIcon sx={{color:'#ff6d00'}} fontSize="x-small" /> Flag?</div></div>}
 
         </div>
 

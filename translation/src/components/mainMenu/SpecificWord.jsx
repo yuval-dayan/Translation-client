@@ -22,20 +22,20 @@ const SpecificWord = ({ rowData }) => {
     const GREY = '#616161';
     const ORANGE = '#ff6d00'
     const [textInput, setTextInput] = useState('');
-    const [flagColor,setFlagColor] = useState(GREY)
+    const [flagColor,setFlagColor] = useState(rowData && rowData.flagged ? ORANGE : GREY)
     const handleTextInputChange = event => {
         setTextInput(event.target.value);
     };
     const updateFlagPropInWord = (flag,color)=>{
-        let wordIndex = translationArray.findIndex(word => word.wordId == rowData.id);
+        let wordIndex = translationArray.findIndex(word => word.id == rowData.id);
         if(wordIndex == -1)
         {
-            setTranslationArray([...translationArray, { wordId: rowData.id, flagged: flag }])
+            setTranslationArray([...translationArray, { id: rowData.id, flagged: flag }])
         }
         else 
         {
            let arrAfterUpdate = [...translationArray];
-           arrAfterUpdate[wordIndex] = {...translationArray[wordIndex], wordId: rowData.id, flagged: flag}
+           arrAfterUpdate[wordIndex] = {...translationArray[wordIndex], id: rowData.id, flagged: flag}
            setTranslationArray(arrAfterUpdate);
 
         }
@@ -54,7 +54,7 @@ const SpecificWord = ({ rowData }) => {
         {
             setValueToPresent(textInput);
             setChecked(true);
-            setNewTranslationArray([...translationArray, { wordId: rowData.id, translation: textInput, translated: true }]);
+            setNewTranslationArray([...translationArray, { id: rowData.id, translation: textInput, translated: true }]);
             setOptions([{ value: textInput, label: textInput }, ...options]);
             setOtherOption(false);
             setTextInput('');
@@ -68,7 +68,7 @@ const SpecificWord = ({ rowData }) => {
         else {
             setValueToPresent(event.value);
             setChecked(true);
-            setNewTranslationArray([...translationArray, { wordId: rowData.id, translation: event.value, translated: true }]);
+            setNewTranslationArray([...translationArray, { id: rowData.id, translation: event.value, translated: true }]);
 
         }
 

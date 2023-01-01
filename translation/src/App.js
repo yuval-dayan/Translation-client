@@ -8,8 +8,10 @@ import Elbit_Systems from '../src/Icons/Elbit_Systems.png'
 function App() {
   const [translationArray, setTranslationArray] = useState([])
   const [disabled, setDisabled] = useState(true);
-  const [applicationsStatus, setApplicationsStatus] = useState([]);
-  const [containerName, setContainerName] = useState('Container Name')
+  const [applicationsPageNumber, setApplicationPageNumber] = useState([]);
+  const [containerName, setContainerName] = useState('Container Name');
+  const [updateStatus,setUpdateStatus] = useState(false);
+
 
   useEffect(() => {
     if (translationArray.length > 0 && disabled) {
@@ -19,23 +21,23 @@ function App() {
   }, [translationArray]);
 
   useEffect(() => {
-    if (applicationsStatus.length > 0) {
-      setContainerName(applicationsStatus[0].name)
+    if (applicationsPageNumber.length > 0) {
+      setContainerName(applicationsPageNumber[0].name)
     }
     let itemsFromLocalStorage = JSON.parse(localStorage.getItem('applicationsStatus'))
     if (itemsFromLocalStorage == undefined || itemsFromLocalStorage.length == 0) {
       let itemsFromLocalStorage = [];
-      for (let i = 0; i < applicationsStatus.length; i++) {
-        itemsFromLocalStorage[i] = { ...applicationsStatus[i], pageNumber: 1 }
+      for (let i = 0; i < applicationsPageNumber.length; i++) {
+        itemsFromLocalStorage[i] = {name: (applicationsPageNumber[i]).name, pageNumber: 1 }
       }
       localStorage.setItem('applicationsStatus', JSON.stringify(itemsFromLocalStorage))
     }
 
-  }, [applicationsStatus]);
+  }, [applicationsPageNumber]);
 
   useEffect(() => {
     fetch('http://localhost:7776/words/status')
-      .then(response => response.json()).then(data => setApplicationsStatus(data)).catch(e => console.error(e))
+      .then(response => response.json()).then(data => setApplicationPageNumber(data)).catch(e => console.error(e))
 
   }, []);
 
@@ -43,17 +45,13 @@ function App() {
     if (translationArray.length > 0) {
       setDisabled(true);
       setTranslationArray([]);
-      let wordsToUpdate = [];
-      translationArray.map((v) => { wordsToUpdate = [...wordsToUpdate, { id: v.wordId, translation: v.translation, translated: true }] })
       const requestOptions = {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(wordsToUpdate)
+        body: JSON.stringify(translationArray)
       };
       fetch(`http://localhost:7776/words/`, requestOptions)
-        .then(response => response.json()).then(fetch('http://localhost:7776/words/status')
-        .then(response => response.json()).then(data => setApplicationsStatus(data)).catch(e => console.error(e)))
-    
+        .then(setUpdateStatus(!updateStatus))
     }
 
   }
@@ -68,7 +66,7 @@ function App() {
           </label>
           <div className='save-button-wrapper'>
            </div>
-          <LeftMenu applicationsStatus={applicationsStatus} setContainerName={setContainerName} containerName={containerName} />
+          <LeftMenu updateStatus={updateStatus} setContainerName={setContainerName} containerName={containerName} />
         </div>
         <MainBody containerName={containerName} />
         </div>

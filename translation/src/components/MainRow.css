@@ -84,7 +84,7 @@ const menu-back-ground-color :antiquewhite .mainRow {
     text-align: center;
     font-size: 30px;
     font-weight: 200;
-    background-color: #efefef;
+    background-color: white;
 
 }
 
@@ -135,7 +135,7 @@ const menu-back-ground-color :antiquewhite .mainRow {
 }
 
 .save-button {
-    background: white;
+    background: #cdcbcb;
     text-align: center;
     width: 60px;
     height: 60px;
