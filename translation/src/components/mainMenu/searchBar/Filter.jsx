@@ -7,16 +7,16 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 
 
 const Filter = ({ data, setData, changeDataByContainerName, setPageNumber ,containerName}) => {
-    const [filterBy, setFilterBy] = useState('');
+    const [filterBy, setFilterBy] = useState('None');
 
     useEffect(() => {
-        setFilterBy('')
+        setFilterBy('None')
       }, [containerName]);
     const changeChoosenFilter = (event) => {
         setFilterBy(event.target.value)
         setPageNumber(1);
         switch (event.target.value) {
-            case 'All':
+            case 'None':
                 changeDataByContainerName()
                 break;
             case '':
@@ -40,13 +40,11 @@ const Filter = ({ data, setData, changeDataByContainerName, setPageNumber ,conta
                         <Select
                             value={filterBy}
                             onChange={changeChoosenFilter}
-                            displayEmpty
                             inputProps={{ 'aria-label': 'Without label' }}
                         >
-                            <MenuItem value="All">All</MenuItem>
+                            <MenuItem value="None">None</MenuItem>
                             <MenuItem value="Flag">Flag</MenuItem>
                             <MenuItem value="Not Translated">Not Translated </MenuItem>
-                            <MenuItem value="">None</MenuItem>
                         </Select>
                     </FormControl>
                 </div>

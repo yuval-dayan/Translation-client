@@ -52,8 +52,7 @@ const SortBy = ({data, setData,containerName}) => {
         >
           <MenuItem value="a-z">A-Z</MenuItem>
           <MenuItem value="z-a">Z-A</MenuItem>
-          <MenuItem value="">
-            <em>None</em>  </MenuItem>      </Select>
+          <MenuItem value="">None </MenuItem>      </Select>
         </FormControl>
       </div>
       </div>
