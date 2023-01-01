@@ -3,7 +3,6 @@ const menu-back-ground-color :antiquewhite .mainRow {
     position: absolute;
 
 }
-
 .specificRow {
     display: flex;
     flex-direction: row;
@@ -63,14 +62,13 @@ const menu-back-ground-color :antiquewhite .mainRow {
 }
 
 .left-menu-options {
-    background-color: aliceblue;
+    background-color: '#c5c5c5';
     justify-content: space-around;
-    border: black solid 1px;
-    border-radius: 3px;
+    border:  #d9d9d9 solid 1px;
+    border-radius: 5px;
     padding: 2vh 0;
-    margin: 0 1.5vw
-
-}
+    margin: 0 1.5vw;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;}
 
 
 .main-body {
@@ -86,14 +84,13 @@ const menu-back-ground-color :antiquewhite .mainRow {
     text-align: center;
     font-size: 30px;
     font-weight: 200;
-    background-color: #949494;
+    background-color: #efefef;
 
 }
 
 .prev-next-word {
     background-color: menu-back-ground-color;
     height: 5vh;
-    width: inherit;
     display: flex;
     place-content: space-evenly;
 }
@@ -168,7 +165,6 @@ const menu-back-ground-color :antiquewhite .mainRow {
     margin: 0 1.5vw;
     color: black;
     border-radius: 3px;
-    box-shadow: rgb(0 0 0 / 25%) 0px 54px 55px, rgb(0 0 0 / 12%) 0px -12px 30px, rgb(0 0 0 / 12%) 0px 4px 6px, rgb(0 0 0 / 17%) 0px 12px 13px, rgb(0 0 0 / 9%) 0px -3px 5px;
 }
 
 input[type='file'] {
@@ -215,13 +211,13 @@ input[type='file'] {
 }
 
 .left-div {
-    border-right: #464b5e solid 2px;
+    border-right: #b3b6c1  solid 1px;
     width: -webkit-fill-available;
 
 }
 
 .right-div {
-    border-left: #464b5e solid 2px;
+    border-left: #b3b6c1  solid 1px;
     width: -webkit-fill-available;
 
 
@@ -231,7 +227,7 @@ input[type='file'] {
     overflow-y: scroll;
     overflow-x: hidden;
     min-height: 20vh;
-}
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;}
 
 .torch-logo {
     font-family: cursive;
@@ -256,7 +252,7 @@ input[type='file'] {
     width: 30vw;
 }
 .search {
-    height: 10vh;
+    height: 9.5vh;
     display: flex;
     flex-flow: row;
     justify-content: space-between;
@@ -264,8 +260,7 @@ input[type='file'] {
     top: 2vh;
     margin: 0 2vw;
     padding: 0 2vw;
-    box-shadow: rgb(100 100 111 / 20%) 0px 7px 29px 0px;
-
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
 }
 .filter-wrapper{
     display: flex;
@@ -327,3 +322,9 @@ input[type='file'] {
     text-transform: none;
     font-size: 18px;
 }
+.add-flag{
+    position: absolute;
+    left: 4vw;
+    top: 1.1vh;
+}
+

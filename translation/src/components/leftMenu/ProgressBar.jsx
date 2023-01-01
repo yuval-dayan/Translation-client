@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import './progressBar.css'
 import CheckIcon from '@mui/icons-material/Check';
 import FlagIcon from '@mui/icons-material/Flag';
+
 const ProgressBar = ({app,containerName}) => {
     const [confirm,setConfirm] = useState(null);
     const [notSuccess,setNotSuccess] = useState(null);
@@ -25,7 +26,7 @@ const ProgressBar = ({app,containerName}) => {
       }, []);
       useEffect(() => {
         if(app){
-          const total = app.translatedWords + app.nonTranslatedWords;
+          const total = app.words;
           if(total)
           {
             const appConfirm = Math.ceil((app.translatedWords / total)*100);
@@ -45,7 +46,7 @@ const ProgressBar = ({app,containerName}) => {
             <div  style={{"width":`${notSuccess}%` }} className="progress-bar-error"></div>
             <div  style={{"width":`${defaultVal}%` }} className="progress-bar-default"></div>
         </div>
-        {app.name == containerName &&  <div><div className="words-info">{app.nonTranslatedWords} left / {totalWords} words</div> <div className="words-info not-translated">Translation not found?</div><div className="words-info confirm"> <CheckIcon sx={{color:'#00c853'}} fontSize="x-small" />     Confirm?</div><div className="words-info flag"> <FlagIcon sx={{color:'#ff6d00'}} fontSize="x-small" /> Flag?</div></div>}
+        {app.name == containerName &&  <div><div className="words-info">{app.nonTranslatedWords} / {totalWords} words</div> <div className="words-info confirm"> <CheckIcon sx={{color:'#00c853'}} fontSize="x-small" /> {app.translatedWords} Confirm</div><div className="words-info flag"> <FlagIcon sx={{color:'#ff6d00'}} fontSize="x-small" /> Flag?</div></div>}
         {app.name != containerName &&  <div className="words-info-wrapper"><div className="words-info confirm"> <CheckIcon sx={{color:'#00c853'}} fontSize="x-small" /> {app.translatedWords} Confirm?</div><span className="words-info-seperator"></span><div className="words-info flag"> <FlagIcon sx={{color:'#ff6d00'}} fontSize="x-small" /> Flag?</div></div>}
 
         </div>

@@ -5,7 +5,6 @@ import ProgressBar from "./ProgressBar";
 
 const LeftMenu = ({ applicationsStatus, setContainerName, containerName }) => {
 
-    const currentApp = applicationsStatus.find(obj => obj.name == containerName)
     const changeApp = (event) => {
         setContainerName(event.target.value)
     }

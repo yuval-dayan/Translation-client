@@ -6,6 +6,7 @@ import IconButton from '@mui/material/IconButton';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import '../../components/MainRow.css'
 import CheckIcon from '@mui/icons-material/Check';
+import FlagIcon from '@mui/icons-material/Flag';
 
 const SpecificWord = ({ rowData }) => {
 
@@ -18,18 +19,46 @@ const SpecificWord = ({ rowData }) => {
     let [options, setOptions] = useState([]);
     const [otherOption, setOtherOption] = useState(false)
     const OTHER = 'Other';
+    const GREY = '#616161';
+    const ORANGE = '#ff6d00'
     const [textInput, setTextInput] = useState('');
+    const [flagColor,setFlagColor] = useState(GREY)
     const handleTextInputChange = event => {
         setTextInput(event.target.value);
     };
-    const saveNewValue = () => {
-        setValueToPresent(textInput);
-        setChecked(true);
-        setNewTranslationArray([...translationArray, { wordId: rowData.id, translation: textInput, translated: true }]);
-        setOptions([{ value: textInput, label: textInput }, ...options]);
-        setOtherOption(false);
-        setTextInput('');
+    const updateFlagPropInWord = (flag,color)=>{
+        let wordIndex = translationArray.findIndex(word => word.wordId == rowData.id);
+        if(wordIndex == -1)
+        {
+            setTranslationArray([...translationArray, { wordId: rowData.id, flagged: flag }])
+        }
+        else 
+        {
+           let arrAfterUpdate = [...translationArray];
+           arrAfterUpdate[wordIndex] = {...translationArray[wordIndex], wordId: rowData.id, flagged: flag}
+           setTranslationArray(arrAfterUpdate);
 
+        }
+        setFlagColor(color)
+    }
+     const addOrRemoveFlag = () =>{
+        if(flagColor == GREY)
+        {
+            updateFlagPropInWord(true,ORANGE);           
+        }
+        else
+        updateFlagPropInWord(false,GREY);
+     }
+    const saveNewValue = () => {
+        if(textInput.length >0)
+        {
+            setValueToPresent(textInput);
+            setChecked(true);
+            setNewTranslationArray([...translationArray, { wordId: rowData.id, translation: textInput, translated: true }]);
+            setOptions([{ value: textInput, label: textInput }, ...options]);
+            setOtherOption(false);
+            setTextInput('');
+        }
     }
 
     const handleChange = (event) => {
@@ -48,6 +77,8 @@ const SpecificWord = ({ rowData }) => {
         if (event.key == "Enter") {
             saveNewValue();
         }
+        setValueToPresent(event.target.value);
+
 
     }
     useEffect(() => {
@@ -110,6 +141,8 @@ const SpecificWord = ({ rowData }) => {
     return (
         <div>{rowData && rowData.id && <div className="specificRow">
         {checked && <div className="checked-icon" > <CheckIcon sx={{color:'#00c853'}}/> </div>}
+        {<div onClick={()=>{addOrRemoveFlag()}} className="add-flag"><FlagIcon sx={{color:`${flagColor}`}} fontSize="small" />
+</div>}
         <div className="label">
             {rowData && (rowData.englishWord || rowData.label)}
         </div >
@@ -122,11 +155,10 @@ const SpecificWord = ({ rowData }) => {
                         <TextField  fullWidth onChange={handleTextInputChange} onKeyPress={onkeyPress}
                             value={textInput}
                            className="other-translation-specific-row"
-                            inputRef={input => input && input.focus()}
                             id="standard-basic" variant="standard" />
                     </div>
                     <div>
-                        <IconButton color="primary" aria-label="upload picture" component="label" onKeyDown={saveNewValue} onClick={saveNewValue}><CheckCircleOutlineIcon /></IconButton>
+                     { textInput && textInput.length >0 && <IconButton color="primary" aria-label="upload picture" component="label" onKeyDown={saveNewValue} onClick={saveNewValue}><CheckCircleOutlineIcon /></IconButton>} 
                     </div>
                 </div>
                     :
@@ -134,6 +166,8 @@ const SpecificWord = ({ rowData }) => {
                         defaultValue={valueToPresent}
                         onChange={handleChange}
                         options={options}
+                        sx={{ backgroundColor:'red' }}
+
                     />}
         </div>
         

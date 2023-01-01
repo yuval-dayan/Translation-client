@@ -1,10 +1,10 @@
 .progress-bar-success{
-background-color: green;
+background-color: #2fb32f;
 min-width: fit-content;
 text-align: center;
 }
 .progress-bar-error{
-    background-color: red;
+    background-color: #e12222;
     min-width: fit-content;
     text-align: center;
 }

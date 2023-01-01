@@ -47,10 +47,7 @@ const MainBody = ({ containerName }) => {
                     for (let i = firstLabel; i < lastLabel; i++) {
                         arr[i] = data[i];
                     }
-                    if(arr.length >0)
-                    {
-                        arr = arr.sort(function (a, b) { return a.id - b.id });
-                    }
+            
                 setDataToPresent(arr);
             setDataLength(Math.ceil(data.length / WORDS_IN_PAGE))
         
@@ -101,11 +98,11 @@ const MainBody = ({ containerName }) => {
         <div className="main-body">
             <div className="search">
                 <SearchBar setDataToPresent={setDataToPresent} data={data} setData={setData} isFilter={isFilter} setIsFilter={setIsFilter} changeDataByContainerName={changeDataByContainerName} containerName={containerName} />
-                <SortBy/>
-                <Filter data={data} setData={setData} changeDataByContainerName={changeDataByContainerName} />
+                <SortBy data={data} setData={setData} containerName={containerName}/>
+                <Filter data={data} setData={setData} changeDataByContainerName={changeDataByContainerName} setPageNumber={setPageNumber} containerName={containerName}/>
             </div>
             <div className="main-body-title">
-                <div >Label</div>
+                <div >Term</div>
                 <div>Translation</div>
             </div>
             <div className="specific-word-wrapper">
