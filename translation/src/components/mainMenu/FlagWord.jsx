@@ -1,8 +1,8 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import '../../components/MainRow.css'
 import FlagIcon from '@mui/icons-material/Flag';
 
-const FlagWord = ({translationArray,setTranslationArray,rowData}) => {
+const FlagWord = ({ translationArray, setTranslationArray, rowData }) => {
     const GREY = '#616161';
     const ORANGE = '#ff6d00'
     const [flagColor, setFlagColor] = useState(rowData && rowData.flagged ? ORANGE : GREY)
@@ -31,7 +31,7 @@ const FlagWord = ({translationArray,setTranslationArray,rowData}) => {
 
     return (
         <div onClick={() => { addOrRemoveFlag() }} className="add-flag"><FlagIcon sx={{ color: `${flagColor}` }} fontSize="small" />
-            </div>
+        </div>
     )
 }
 export default FlagWord;

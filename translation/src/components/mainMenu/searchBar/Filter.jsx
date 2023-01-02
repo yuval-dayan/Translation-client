@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import '../../../components/MainRow.css'
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import MenuItem from '@mui/material/MenuItem';
@@ -6,12 +6,12 @@ import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 
 
-const Filter = ({ data, setData, changeDataByContainerName, setPageNumber ,containerName}) => {
+const Filter = ({ data, setData, changeDataByContainerName, setPageNumber, containerName }) => {
     const [filterBy, setFilterBy] = useState('None');
 
     useEffect(() => {
         setFilterBy('None')
-      }, [containerName]);
+    }, [containerName]);
     const changeChoosenFilter = (event) => {
         setFilterBy(event.target.value)
         setPageNumber(1);

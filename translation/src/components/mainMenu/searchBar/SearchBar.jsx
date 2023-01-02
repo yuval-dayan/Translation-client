@@ -50,7 +50,6 @@ function SearchBar({ setDataToPresent,setData, data, setIsFilter, changeDataByCo
     changeDataByContainerName();
     setCleanSearchDisabled(true);
     setWordEntered("");
-
   }
 
   return (
