@@ -1,4 +1,5 @@
 import { TranslationContext } from './context/TranslationContext'
+import { SaveContext } from './context/SaveContext';
 import { useEffect, useState } from 'react';
 import MainBody from './components/mainMenu/MainBody';
 import '../src/components/MainRow.css'
@@ -7,10 +8,14 @@ import UpperBar from "./components/upperBarLowerBar/UpperBar";
 import Elbit_Systems from '../src/Icons/Elbit_Systems.png'
 import AlertDialog from './components/AlertDialog';
 function App() {
+  const getCurrentContainer = () =>{
+    return JSON.parse(localStorage.getItem('currentContainer'));
+  }
+
   const [translationArray, setTranslationArray] = useState([])
   const [disabled, setDisabled] = useState(true);
   const [applicationsPageNumber, setApplicationPageNumber] = useState([]);
-  const [containerName, setContainerName] = useState('Container Name');
+  const [containerName, setContainerName] = useState(getCurrentContainer() ? getCurrentContainer() :'Container Name');
   const [updateStatus,setUpdateStatus] = useState(false);
   const [presentPopUp,setPresentPopUp] = useState(false);
 
@@ -21,9 +26,14 @@ function App() {
     }
 
   }, [translationArray]);
+  
+  useEffect(() => {
+    setTranslationArray([])
+
+  }, [updateStatus]);
 
   useEffect(() => {
-    if (applicationsPageNumber.length > 0) {
+    if (getCurrentContainer() == undefined) {
       setContainerName(applicationsPageNumber[0].name)
     }
     let itemsFromLocalStorage = JSON.parse(localStorage.getItem('applicationsStatus'))
@@ -46,7 +56,6 @@ function App() {
   const saveChangesToWordsFile = () => {
     if (translationArray.length > 0) {
       setDisabled(true);
-      setTranslationArray([]);
       const requestOptions = {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
@@ -54,13 +63,17 @@ function App() {
       };
       fetch(`http://localhost:7776/words/`, requestOptions)
         .then(setUpdateStatus(!updateStatus))
+        setTranslationArray([]);
+
     }
 
   }
   return (
     <div className='app'>
-      {presentPopUp && translationArray.length >0 && <AlertDialog presentPopUp={presentPopUp} setPresentPopUp={setPresentPopUp} saveChangesToWordsFile={saveChangesToWordsFile}/>}
+      {presentPopUp && translationArray.length > 0 && <AlertDialog presentPopUp={presentPopUp} setPresentPopUp={setPresentPopUp} saveChangesToWordsFile={saveChangesToWordsFile}/>}
       <TranslationContext.Provider value={{ translationArray, setTranslationArray }}>
+      <SaveContext.Provider value={{setPresentPopUp }}>
+
       <UpperBar containerName={containerName} saveChangesToWordsFile={saveChangesToWordsFile} disabled={disabled}/>
       <div className='main'>
       <div className='app-left-menu '>
@@ -73,6 +86,7 @@ function App() {
         </div>
         <MainBody containerName={containerName} />
         </div>
+        </SaveContext.Provider>
     </TranslationContext.Provider>
       </div>
      

@@ -18,7 +18,8 @@ const LeftMenu = ({updateStatus, setContainerName, containerName,setPresentPopUp
       }, [updateStatus]);
     const changeApp = (event) => {
         setContainerName(event.target.value);
-        setPresentPopUp(true);
+        setPresentPopUp(true)
+       
     }
     return (
         <div className="left-menu">
