@@ -196,30 +196,10 @@ input[type='file'] {
     height: 90vh;
 }
 
-.seprator {
-    display: flex;
-    width: 100%;
-    height: 5vh;
-
-}
-
 .wrapper-seprator {
     display: flex;
     width: 100%;
     height: 5vh;
-
-}
-
-.left-div {
-    border-right: #b3b6c1  solid 1px;
-    width: -webkit-fill-available;
-
-}
-
-.right-div {
-    border-left: #b3b6c1  solid 1px;
-    width: -webkit-fill-available;
-
 
 }
 

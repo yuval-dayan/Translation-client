@@ -26,8 +26,6 @@ const LeftMenu = ({updateStatus, setContainerName, containerName,setPresentPopUp
             {appStatus.length && appStatus.map((app,index) =>
                 <React.Fragment key={`${app.name} ${index}`}>
                     <div className="wrapper-seprator">
-                        <div className="seprator left-div"></div>
-                        <div className="seperator right-div"></div>
                     </div>
                     <div className={app.name == containerName ? 'left-menu-options choosen-app ' : 'left-menu-options'} key={(app && app.name)}>
                         <Button style={{ width: 300 ,color:"black"}} value={app.name} onClick={(e)=>{changeApp(e)}} color={app.nonTranslatedWords > 0 ? 'warning' : 'info'}> {app.name}</Button>
