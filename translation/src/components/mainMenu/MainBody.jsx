@@ -17,6 +17,7 @@ const MainBody = ({ containerName }) => {
         }
         return 1;
     }
+
     const appFromLocalStorage = (JSON.parse(localStorage.getItem('applicationsStatus')))
     const WORDS_IN_PAGE = 20;
     const [pageNumber, setPageNumber] = useState(setPageNumberFromLocalStorage() ?setPageNumberFromLocalStorage():1 );
@@ -24,6 +25,7 @@ const MainBody = ({ containerName }) => {
     const [dataToPresent, setDataToPresent] = useState([])
     const [dataLength, setDataLength] = useState(0);
     const [isFilter, setIsFilter] = useState(false);
+
     const changeDataByContainerName = () => {
         if (containerName) {
             fetch(`http://localhost:7776/words/projectName/${containerName}`)
@@ -96,6 +98,7 @@ const MainBody = ({ containerName }) => {
 
     return (
         <div className="main-body">
+            
             <div className="search">
                 <SearchBar setDataToPresent={setDataToPresent} data={data} setData={setData} isFilter={isFilter} setIsFilter={setIsFilter} changeDataByContainerName={changeDataByContainerName} containerName={containerName} />
                 <SortBy data={data} setData={setData} containerName={containerName}/>

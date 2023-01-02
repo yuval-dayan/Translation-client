@@ -5,12 +5,14 @@ import '../src/components/MainRow.css'
 import LeftMenu from './components/leftMenu/LeftMenu';
 import UpperBar from "./components/upperBarLowerBar/UpperBar";
 import Elbit_Systems from '../src/Icons/Elbit_Systems.png'
+import AlertDialog from './components/AlertDialog';
 function App() {
   const [translationArray, setTranslationArray] = useState([])
   const [disabled, setDisabled] = useState(true);
   const [applicationsPageNumber, setApplicationPageNumber] = useState([]);
   const [containerName, setContainerName] = useState('Container Name');
   const [updateStatus,setUpdateStatus] = useState(false);
+  const [presentPopUp,setPresentPopUp] = useState(false);
 
 
   useEffect(() => {
@@ -57,6 +59,7 @@ function App() {
   }
   return (
     <div className='app'>
+      {presentPopUp && translationArray.length >0 && <AlertDialog presentPopUp={presentPopUp} setPresentPopUp={setPresentPopUp} saveChangesToWordsFile={saveChangesToWordsFile}/>}
       <TranslationContext.Provider value={{ translationArray, setTranslationArray }}>
       <UpperBar containerName={containerName} saveChangesToWordsFile={saveChangesToWordsFile} disabled={disabled}/>
       <div className='main'>
@@ -66,7 +69,7 @@ function App() {
           </label>
           <div className='save-button-wrapper'>
            </div>
-          <LeftMenu updateStatus={updateStatus} setContainerName={setContainerName} containerName={containerName} />
+          <LeftMenu setPresentPopUp={setPresentPopUp} updateStatus={updateStatus} setContainerName={setContainerName} containerName={containerName} />
         </div>
         <MainBody containerName={containerName} />
         </div>

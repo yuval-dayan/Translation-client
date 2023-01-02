@@ -322,9 +322,13 @@ input[type='file'] {
     text-transform: none;
     font-size: 18px;
 }
+
 .add-flag{
     position: absolute;
     left: 4vw;
     top: 1.1vh;
+}
+.css-wjixpo-MuiButtonBase-root-MuiButton-root{
+    text-transform: none;
 }
 

@@ -9,7 +9,28 @@ import SortIcon from '@mui/icons-material/Sort';
 const SortBy = ({data, setData,containerName}) => {
 
     const [sortBy, setSortBy] = useState('');
-
+    function compareAZ(a,b) {
+      let firstArg = a.englishWord.length > 0 ? a.englishWord.toLowerCase () : a.label.toLowerCase();
+      let secondArg = b.englishWord.length > 0 ? b.englishWord.toLowerCase () : b.label.toLowerCase();
+      if ( firstArg < secondArg ){
+        return -1;
+      }
+      if ( firstArg >secondArg ){
+        return 1;
+      }
+      return 0;
+     }
+     function compareZA(a,b) {
+      let firstArg = a.englishWord.length > 0 ? a.englishWord.toLowerCase() : a.label.toLowerCase();
+      let secondArg = b.englishWord.length > 0 ? b.englishWord.toLowerCase() : b.label.toLowerCase();
+      if ( firstArg < secondArg ){
+        return 1;
+      }
+      if ( firstArg >secondArg ){
+        return -1;
+      }
+      return 0;
+     }
     
     useEffect(() => {
       setSortBy('')
@@ -21,12 +42,12 @@ const SortBy = ({data, setData,containerName}) => {
       
       switch (event.target.value) {
         case 'a-z':
-            arrAtferSort.sort((a,b)=>a.englishWord > b.englishWord ? 1 :((b.englishWord > a.englishWord) ? -1 :0))
+          arrAtferSort.sort(compareAZ );
             setData(arrAtferSort);
             break;
-            case 'z-a':
-            arrAtferSort.sort((a,b)=>a.englishWord > b.englishWord ? -1 :((b.englishWord > a.englishWord) ? 1 :0))
-            setData(arrAtferSort);
+        case 'z-a':
+          arrAtferSort.sort(compareZA)
+        setData(arrAtferSort);
             break;
         case '':
           if (containerName) {

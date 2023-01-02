@@ -4,11 +4,8 @@ import { useState,useEffect } from "react";
 import '../../components/MainRow.css'
 import ProgressBar from "./ProgressBar";
 
-const LeftMenu = ({updateStatus, setContainerName, containerName }) => {
+const LeftMenu = ({updateStatus, setContainerName, containerName,setPresentPopUp }) => {
     const [appStatus,setAppStatus] = useState([]);
-
-
-
     useEffect(() => {
         fetch('http://localhost:7776/words/status')
           .then(response => response.json()).then(data => setAppStatus(data)).catch(e => console.error(e))
@@ -20,7 +17,8 @@ const LeftMenu = ({updateStatus, setContainerName, containerName }) => {
     
       }, [updateStatus]);
     const changeApp = (event) => {
-        setContainerName(event.target.value)
+        setContainerName(event.target.value);
+        setPresentPopUp(true);
     }
     return (
         <div className="left-menu">
@@ -31,7 +29,7 @@ const LeftMenu = ({updateStatus, setContainerName, containerName }) => {
                         <div className="seperator right-div"></div>
                     </div>
                     <div className={app.name == containerName ? 'left-menu-options choosen-app ' : 'left-menu-options'} key={(app && app.name)}>
-                        <Button style={{ width: 300 ,color:"black"}} value={app.name} onClick={changeApp} color={app.nonTranslatedWords > 0 ? 'warning' : 'info'}> {app.name}</Button>
+                        <Button style={{ width: 300 ,color:"black"}} value={app.name} onClick={(e)=>{changeApp(e)}} color={app.nonTranslatedWords > 0 ? 'warning' : 'info'}> {app.name}</Button>
                         <ProgressBar app={app} containerName={containerName}/>
                     </div></React.Fragment>
             )}
