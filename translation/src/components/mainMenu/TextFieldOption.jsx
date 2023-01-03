@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState,useRef } from "react";
 import TextField from '@mui/material/TextField';
 import IconButton from '@mui/material/IconButton';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
@@ -6,6 +6,7 @@ import '../../components/MainRow.css'
 
 const TextFieldOption = ({ textInput, setTextInput, setValueToPresent, setValues, setOptions, options, setOtherOption }) => {
 
+    const ref = useRef(null);
     const handleTextInputChange = event => {
         setTextInput(event.target.value);
     };
@@ -15,6 +16,9 @@ const TextFieldOption = ({ textInput, setTextInput, setValueToPresent, setValues
         }
         setValueToPresent(event.target.value);
     }
+    const handleClick = () => {
+        ref.current.focus();
+      };
     const saveNewValue = () => {
         if (textInput.length > 0) {
             setValues(textInput)
@@ -29,8 +33,7 @@ const TextFieldOption = ({ textInput, setTextInput, setValueToPresent, setValues
                 <TextField fullWidth onChange={handleTextInputChange} onKeyPress={onkeyPress}
                     value={textInput}
                     className="other-translation-specific-row"
-                    id="standard-basic" variant="standard" inputRef={input => input && input.focus()} />
-
+                    id="standard-basic" variant="standard" ref={ref} onClick={handleClick} />
             </div>
             <div>
                 {textInput && textInput.length > 0 && <IconButton color="primary" aria-label="upload picture" component="label" onKeyDown={saveNewValue} onClick={saveNewValue}><CheckCircleOutlineIcon /></IconButton>}
