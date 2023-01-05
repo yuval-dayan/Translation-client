@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import '../../components/MainRow.css'
 import FlagIcon from '@mui/icons-material/Flag';
+import { setTranslationArrayWithFlags } from "../../Helpers/translationArrayHelper";
 
 const FlagWord = ({ translationArray, setTranslationArray, rowData }) => {
     const GREY = '#616161';
@@ -15,17 +16,7 @@ const FlagWord = ({ translationArray, setTranslationArray, rowData }) => {
             updateFlagPropInWord(false, GREY);
     }
     const updateFlagPropInWord = (flag, color) => {
-        let wordIndex = translationArray.findIndex(word => word.id == rowData.id);
-        if (wordIndex == -1) {
-            setTranslationArray([...translationArray, { id: rowData.id, flagged: flag, translation: rowData.translation, translated: rowData.translated }])
-            console.log([...translationArray, { id: rowData.id, flagged: flag, translation: rowData.translation, translated: rowData.translated }])
-        }
-        else {
-            let arrAfterUpdate = [...translationArray];
-            arrAfterUpdate[wordIndex] = { ...translationArray[wordIndex], id: rowData.id, flagged: flag }
-            setTranslationArray(arrAfterUpdate);
-
-        }
+        setTranslationArrayWithFlags(rowData,translationArray,flag,setTranslationArray)
         setFlagColor(color)
     }
 

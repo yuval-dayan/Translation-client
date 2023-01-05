@@ -6,6 +6,7 @@ import CheckIcon from '@mui/icons-material/Check';
 import TextFieldOption from "./TextFieldOption";
 import SelectOptions from "./SelectOptions";
 import FlagWord from "./FlagWord";
+import { setTranslationArrayWithNewWord } from "../../Helpers/translationArrayHelper";
 
 const SpecificWord = ({ rowData}) => {
 
@@ -26,15 +27,7 @@ const SpecificWord = ({ rowData}) => {
         setValueToPresent(value);
         setChecked(true);
         setCheckedColor("#00c853")
-        let wordIndex = translationArray.findIndex(word => word.id == rowData.id);
-        if (wordIndex == -1) {
-            setTranslationArray([...translationArray, { id: rowData.id, flagged:  rowData.flagged , translation: value, translated: true }])
-        }
-        else {
-            let arrAfterUpdate = [...translationArray];
-            arrAfterUpdate[wordIndex] = { ...translationArray[wordIndex], translation:value,translated: true }
-            setTranslationArray(arrAfterUpdate);
-        }
+        setTranslationArrayWithNewWord(translationArray,rowData,value,setTranslationArray);
     }
     const setValuesAndColors = (value) => {
         setPresentPopUp(false)

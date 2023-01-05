@@ -71,7 +71,8 @@ const MainBody = ({ containerName }) => {
     }, []);
     useEffect(() => {
         setPageNumber(setPageNumberFromLocalStorage())
-        changeDataByContainerName()
+        changeDataByContainerName();
+        localStorage.setItem('currentContainer', JSON.stringify(containerName))
     }, [containerName]);
 
     useEffect(() => {
