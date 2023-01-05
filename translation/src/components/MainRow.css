@@ -1,0 +1,173 @@
+const menu-back-ground-color :antiquewhite .mainRow {
+    display: ltr;
+    position: absolute;
+
+}
+
+.select {
+    width: 200px;
+}
+
+
+
+
+
+
+
+.app-left-menu {
+    position: relative;
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+}
+
+.app-main-menu {
+    position: relative;
+    background-color: darkgray;
+}
+
+
+
+
+
+
+
+
+
+.right-bar {
+    width: 10%;
+    background-color: menu-back-ground-color;
+}
+
+
+
+
+
+
+
+.save-button-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+
+
+input[type='file'] {
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    opacity: 0;
+}
+
+.upload-button {
+    top: 0;
+    position: fixed;
+    padding-top: 2.5vh;
+    padding-left: 2vw;
+}
+
+.span-upload {
+    position: absolute;
+    top: 39px;
+    left: 15px;
+}
+
+.main {
+    display: flex;
+    background: white;
+    position: absolute;
+    width: 100%;
+    top: 10vh;
+    height: 90vh;
+}
+
+
+
+.torch-logo {
+    font-family: cursive;
+    font-size: xx-large;
+    color: darkblue;
+}
+
+
+.search-bar-wrapper {
+    height: 6vh;
+    margin-top: 2vh;
+}
+
+.search-bar-input {
+    height: 4vh;
+    margin: 0.75vh 0 0.75vh 0.75vh;
+    padding: 0;
+    width: 30vw;
+}
+
+.filter-wrapper {
+    display: flex;
+    flex-flow: column;
+    justify-content: space-around;
+}
+
+.filter-icon {
+    display: flex;
+    position: relative;
+    top: 5px;
+    right: 2px;
+}
+
+.choosen-filter {
+    font-weight: 700;
+    text-decoration: underline black 1px;
+}
+
+.elbit-img {
+    height: 7vh;
+    position: absolute;
+    top: 0;
+    margin: 15px 0;
+}
+
+.sort-by {
+    width: 5vw;
+    display: inline;
+}
+
+.sort-by-wrapper {
+    width: 10vw;
+    flex-flow: column;
+    place-content: space-between;
+    position: relative;
+    bottom: 5px;
+    margin: 13px;
+    display: flex;
+    width: 18vw;
+}
+
+.sort-by-icon {
+    position: relative;
+    right: 2px;
+    display: inline;
+    top: 2px;
+}
+
+.sort-by-icon-wrapper {
+    display: inline;
+    position: relative;
+    top: 7px;
+}
+
+.container-name {
+    text-transform: none;
+    font-size: 18px;
+}
+
+
+.css-wjixpo-MuiButtonBase-root-MuiButton-root {
+    text-transform: none;
+}
+
+.confirm-all {
+    position: absolute;
+    top: 12vh;
+    left: 23vw
+}

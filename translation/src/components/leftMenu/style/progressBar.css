@@ -1,0 +1,47 @@
+.progress-bar-success{
+background-color: #2fb32f;
+min-width: fit-content;
+text-align: center;
+}
+.progress-bar-error{
+    background-color: #e12222;
+    min-width: fit-content;
+    text-align: center;
+}
+.progress-bar-default{
+    background-color: gray;
+    min-width: fit-content;
+    text-align: center;
+}
+.progress-bar{
+    display: flex;
+    flex-direction: row-reverse;
+    width: 10vw;
+    margin: auto;
+    text-align: center;
+    height: 10px;
+    border-radius: 100px;
+    overflow: hidden;
+}
+.words-info{
+    text-align: center;
+    margin: 10px;
+}
+.confirm {
+    color: green;
+}
+.not-translated {
+    color: red;
+}
+.flag{
+    color: orangered;
+}
+.words-info-wrapper{
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+}
+.words-info-seperator{
+    border-right: black solid 2px;
+    margin: 10px 0;
+}
