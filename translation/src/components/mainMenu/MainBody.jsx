@@ -6,21 +6,21 @@ import SortBy from "./searchBar/SortBy";
 import Filter from "./searchBar/Filter";
 import '../mainMenu/style/mainMenu.css';
 import { changeDataByContainerName } from "../../Helpers/DbHelper";
+import { getApplicationStatusFromLS,setCurrentContainerToLS,setApplicationsStatus } from "../../Helpers/LocalStorageHelper";
 
 
 const MainBody = ({ containerName,updateStatus }) => {
+    const appFromLocalStorage = getApplicationStatusFromLS()
 
     const setPageNumberFromLocalStorage = () => {
-        let appsFromLS = JSON.parse(localStorage.getItem('applicationsStatus'))
-        if (appsFromLS && appsFromLS.length > 0) {
-            let currentContainer = appsFromLS && appsFromLS.find(app => (app && app.name) == containerName)
+        if (appFromLocalStorage && appFromLocalStorage.length > 0) {
+            let currentContainer = appFromLocalStorage && appFromLocalStorage.find(app => (app && app.name) == containerName)
             if (currentContainer && currentContainer.pageNumber)
                 return currentContainer.pageNumber;
         }
         return 1;
     }
 
-    const appFromLocalStorage = (JSON.parse(localStorage.getItem('applicationsStatus')))
     const WORDS_IN_PAGE = 20;
     const [pageNumber, setPageNumber] = useState(setPageNumberFromLocalStorage() ? setPageNumberFromLocalStorage() : 1);
     const [data, setData] = useState([])
@@ -46,7 +46,7 @@ const MainBody = ({ containerName,updateStatus }) => {
         const appIndex = appFromLocalStorage.findIndex(obj => { return obj.name == containerName })
         let appToLocalStorage = appFromLocalStorage;
         appToLocalStorage[appIndex] = { ...appToLocalStorage[appIndex], pageNumber: pageNumber }
-        localStorage.setItem('applicationsStatus', JSON.stringify(appToLocalStorage))
+        setApplicationsStatus(appToLocalStorage)
     }
     const setDataToPresentFromLS = () => {
         if (pageNumber != setPageNumberFromLocalStorage()) {
@@ -67,13 +67,14 @@ const MainBody = ({ containerName,updateStatus }) => {
     useEffect(() => {
         changeDataByContainerName(containerName,setData)
     }, []);
+    
     useEffect(() => {
         changeDataByContainerName(containerName,setData)
     }, [updateStatus]);
     useEffect(() => {
         setPageNumber(setPageNumberFromLocalStorage())
         changeDataByContainerName(containerName,setData);
-        localStorage.setItem('currentContainer', JSON.stringify(containerName))
+        setCurrentContainerToLS(containerName)
     }, [containerName]);
 
     useEffect(() => {

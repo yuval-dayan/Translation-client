@@ -8,28 +8,28 @@ import UpperBar from "./components/upperBarLowerBar/UpperBar";
 import Elbit_Systems from '../src/Icons/Elbit_Systems.png'
 import AlertDialog from './components/AlertDialog';
 import { updateDbWordsCollection,setApplicationsFromDB } from './Helpers/DbHelper';
+import { getCurrentContainerFromLS,getApplicationStatusFromLS,setApplicationsStatus} from './Helpers/LocalStorageHelper';
 function App() {
-  const getCurrentContainer = () => {
-    return JSON.parse(localStorage.getItem('currentContainer'));
-  }
+
 
   const [translationArray, setTranslationArray] = useState([])
   const [disabled, setDisabled] = useState(true);
   const [applications, setApplications] = useState([]);
-  const [containerName, setContainerName] = useState(getCurrentContainer() ? getCurrentContainer() : 'Container Name');
+  const [containerName, setContainerName] = useState(getCurrentContainerFromLS() ? getCurrentContainerFromLS(): 'Container Name');
   const [updateStatus, setUpdateStatus] = useState(false);
   const [presentPopUp, setPresentPopUp] = useState(false);
 
+ 
 
   const setApplicationStatusToLS = () => {
-    let itemsFromLocalStorage = JSON.parse(localStorage.getItem('applicationsStatus'))
+    let itemsFromLocalStorage = getApplicationStatusFromLS()
     if (itemsFromLocalStorage == undefined || itemsFromLocalStorage.length == 0) {
       let itemsFromLocalStorage = [];
       for (let i = 0; i < applications.length; i++) {
         itemsFromLocalStorage[i] = { name: (applications[i]).name, pageNumber: 1 }
       }
-      localStorage.setItem('applicationsStatus', JSON.stringify(itemsFromLocalStorage))
-    }
+      setApplicationsStatus(itemsFromLocalStorage)  
+      }
   }
 
   const saveChangesToWordsFile = () => {
@@ -50,7 +50,7 @@ function App() {
   }, [updateStatus]);
 
   useEffect(() => {
-    if (getCurrentContainer() == undefined) {
+    if (getCurrentContainerFromLS() == undefined) {
       setContainerName(applications[0].name)
     }
     setApplicationStatusToLS();
