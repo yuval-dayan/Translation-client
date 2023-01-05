@@ -33,7 +33,7 @@ const ProgressBar = ({app,containerName}) => {
             const appTranslationNotFound = Math.ceil((app.nonTranslatedWords / total)*100);
             const appDefault = (100 - appConfirm - appTranslationNotFound) > 0 ? (100 - appConfirm - appTranslationNotFound) : 0
             setConfirm(appConfirm > 0 ? appConfirm : null)
-            setNotSuccess(appTranslationNotFound >0 ? appTranslationNotFound :null)
+            setNotSuccess(appTranslationNotFound > 0 ? appTranslationNotFound :0)
             setDefaultVal(appDefault)
           }
           

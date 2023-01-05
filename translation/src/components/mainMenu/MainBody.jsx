@@ -25,6 +25,8 @@ const MainBody = ({ containerName }) => {
     const [dataToPresent, setDataToPresent] = useState([])
     const [dataLength, setDataLength] = useState(0);
     const [isFilter, setIsFilter] = useState(false);
+    const firstLabel = (pageNumber - 1) * WORDS_IN_PAGE;
+
 
     const changeDataByContainerName = () => {
         if (containerName) {
@@ -49,7 +51,6 @@ const MainBody = ({ containerName }) => {
         localStorage.setItem('applicationsStatus', JSON.stringify(appToLocalStorage))
     }
     const setDataToPresentFromLS = () => {
-        const dataLengthByWordInPage = data.length < WORDS_IN_PAGE ? data.length : WORDS_IN_PAGE;
         if (pageNumber != setPageNumberFromLocalStorage()) {
             setDataToPresentByWordInPage();
         }
@@ -58,7 +59,6 @@ const MainBody = ({ containerName }) => {
         let arr = [];
         if (data.length > 0) {
             const dataAfterSort = data.sort(function (a, b) { return a.id - b.id });
-            const firstLabel = (pageNumber - 1) * WORDS_IN_PAGE;
             const lastLabel = pageNumber == dataLength ? (((pageNumber - 1) * WORDS_IN_PAGE) + (data.length % WORDS_IN_PAGE)) : pageNumber * WORDS_IN_PAGE;
             for (let i = firstLabel; i < lastLabel; i++) {
                 arr[i] = dataAfterSort[i];

@@ -312,3 +312,8 @@ input[type='file'] {
     text-transform: none;
 }
 
+.confirm-all{
+    position: absolute;
+    top: 12vh;
+    left: 23vw
+}

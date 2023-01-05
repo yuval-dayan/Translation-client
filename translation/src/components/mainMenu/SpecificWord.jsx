@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext, useEffect,useRef } from "react";
 import { TranslationContext } from "../../context/TranslationContext";
 import { SaveContext } from "../../context/SaveContext";
 import '../../components/MainRow.css'
@@ -7,15 +7,15 @@ import TextFieldOption from "./TextFieldOption";
 import SelectOptions from "./SelectOptions";
 import FlagWord from "./FlagWord";
 
-const SpecificWord = ({ rowData }) => {
+const SpecificWord = ({ rowData}) => {
 
+    const [checkedColor, setCheckedColor] = useState(rowData && rowData.translated ? "#00c853" : "#616161")
     const [checked, setChecked] = useState(rowData && rowData.translated ? true : false);
     const [valueToPresent, setValueToPresent] = useState(rowData && rowData.translation);
     const valueFromRow = rowData;
     const [valueSet, setValueSet] = useState([])
     const { translationArray, setTranslationArray } = useContext(TranslationContext)
     const { setPresentPopUp } = useContext(SaveContext)
-    const [newTranslationArray, setNewTranslationArray] = useState(translationArray);
     const [options, setOptions] = useState([]);
     const [otherOption, setOtherOption] = useState(false)
     const OTHER = 'Other';
@@ -25,8 +25,27 @@ const SpecificWord = ({ rowData }) => {
         setPresentPopUp(false)
         setValueToPresent(value);
         setChecked(true);
-        setNewTranslationArray([...translationArray, { id: rowData.id, translation: value, translated: true, flagged: rowData.flagged }]);
+        setCheckedColor("#00c853")
+        let wordIndex = translationArray.findIndex(word => word.id == rowData.id);
+        if (wordIndex == -1) {
+            setTranslationArray([...translationArray, { id: rowData.id, flagged:  rowData.flagged , translation: value, translated: true }])
+        }
+        else {
+            let arrAfterUpdate = [...translationArray];
+            arrAfterUpdate[wordIndex] = { ...translationArray[wordIndex], translation:value,translated: true }
+            setTranslationArray(arrAfterUpdate);
+        }
+    }
+    const setValuesAndColors = (value) => {
+        setPresentPopUp(false)
+        setValueToPresent(value);
+        setChecked(true);
+        setCheckedColor("#00c853")
+    }
 
+    const saveOptionAsValue = () => {
+        setValuesAndColors(valueToPresent);
+        setValues(valueToPresent);
     }
     useEffect(() => {
         const keyDownHandler = event => {
@@ -44,12 +63,7 @@ const SpecificWord = ({ rowData }) => {
         };
     }, []);
 
-    useEffect(() => {
-        if (newTranslationArray.length > 0) {
-            setTranslationArray(newTranslationArray);
-            console.log(newTranslationArray);
-        }
-    }, [newTranslationArray]);
+
     useEffect(() => {
         {
             let newOptions = [];
@@ -72,7 +86,7 @@ const SpecificWord = ({ rowData }) => {
 
     return (
         <div>{rowData && rowData.id && <div className="specificRow">
-            {checked && <div className="checked-icon" > <CheckIcon sx={{ color: '#00c853' }} /> </div>}
+            {(checked || options.length >1) && <div className="checked-icon" > <CheckIcon sx={{ color: `${checkedColor}`  } }  onClick={saveOptionAsValue}/> </div>}
             <FlagWord translationArray={translationArray} rowData={rowData} setTranslationArray={setTranslationArray} />
             <div className="label">
                 {rowData && (rowData.englishWord || rowData.label)}
