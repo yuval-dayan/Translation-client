@@ -3,10 +3,11 @@ import '../../../components/MainRow.css'
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
+import Select from '@mui/material/Select';
+import { changeDataByContainerName } from "../../../Helpers/DbHelper";
 
 
-const Filter = ({ data, setData, changeDataByContainerName, setPageNumber, containerName }) => {
+const Filter = ({ data, setData, setPageNumber, containerName }) => {
     const [filterBy, setFilterBy] = useState('None');
 
     useEffect(() => {
@@ -17,16 +18,20 @@ const Filter = ({ data, setData, changeDataByContainerName, setPageNumber, conta
         setPageNumber(1);
         switch (event.target.value) {
             case 'None':
-                changeDataByContainerName()
+                changeDataByContainerName(containerName,setData)
                 break;
             case '':
-                changeDataByContainerName()
+                changeDataByContainerName(containerName,setData)
                 break;
             case 'Flag':
+                setData(data.filter(word => word.flagged == true))
                 break;
             case 'Not Translated':
                 setData(data.filter(word => word.translated == false))
                 break;
+                case 'Translated':
+                    setData(data.filter(word => word.translated == true))
+                    break;
         }
 
     }
@@ -45,6 +50,8 @@ const Filter = ({ data, setData, changeDataByContainerName, setPageNumber, conta
                             <MenuItem value="None">None</MenuItem>
                             <MenuItem value="Flag">Flag</MenuItem>
                             <MenuItem value="Not Translated">Not Translated </MenuItem>
+                            <MenuItem value="Translated">Translated </MenuItem>
+
                         </Select>
                     </FormControl>
                 </div>

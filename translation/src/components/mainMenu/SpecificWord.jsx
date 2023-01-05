@@ -7,6 +7,7 @@ import TextFieldOption from "./TextFieldOption";
 import SelectOptions from "./SelectOptions";
 import FlagWord from "./FlagWord";
 import { setTranslationArrayWithNewWord } from "../../Helpers/translationArrayHelper";
+import { getValueFromDictionary } from "../../Helpers/DbHelper";
 
 const SpecificWord = ({ rowData}) => {
 
@@ -46,10 +47,10 @@ const SpecificWord = ({ rowData}) => {
                 setOtherOption(false);
             }
         };
+
         document.addEventListener('keydown', keyDownHandler);
         if (valueFromRow && valueSet.length == 0) {
-            fetch(`http://localhost:7776/dictionary/translation?regexName=${valueFromRow.englishWord}`)
-                .then(response => response.json()).then(data1 => setValueSet(data1)).catch(e => console.error(e))
+            getValueFromDictionary(setValueSet,valueFromRow.englishWord)
         }
         return () => {
             document.removeEventListener('keydown', keyDownHandler);

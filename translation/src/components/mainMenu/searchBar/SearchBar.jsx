@@ -3,10 +3,11 @@ import '../../../components/MainRow.css'
 import '../searchBar/style/SearchBar.css'
 import SearchIcon from '@mui/icons-material/Search';
 import { Button } from "@mui/material";
+import { changeDataByContainerName } from "../../../Helpers/DbHelper";
 
 
 
-function SearchBar({ setDataToPresent,setData, data, setIsFilter, changeDataByContainerName, containerName }) {
+function SearchBar({ setDataToPresent,setData, data, setIsFilter, containerName }) {
   const [wordEntered, setWordEntered] = useState("");
   const [noResultFound, setNoResultFound] = useState("");
   const [cleanSearchDisabled, setCleanSearchDisabled] = useState(true);
@@ -47,7 +48,7 @@ function SearchBar({ setDataToPresent,setData, data, setIsFilter, changeDataByCo
     setWordEntered("");
   }, [containerName]);
   const changeDataAndCleanSearch = () => {
-    changeDataByContainerName();
+    changeDataByContainerName(containerName,setData);
     setCleanSearchDisabled(true);
     setWordEntered("");
   }

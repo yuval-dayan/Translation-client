@@ -7,6 +7,7 @@ import LeftMenu from './components/leftMenu/LeftMenu';
 import UpperBar from "./components/upperBarLowerBar/UpperBar";
 import Elbit_Systems from '../src/Icons/Elbit_Systems.png'
 import AlertDialog from './components/AlertDialog';
+import { updateDbWordsCollection,setApplicationsFromDB } from './Helpers/DbHelper';
 function App() {
   const getCurrentContainer = () => {
     return JSON.parse(localStorage.getItem('currentContainer'));
@@ -14,7 +15,7 @@ function App() {
 
   const [translationArray, setTranslationArray] = useState([])
   const [disabled, setDisabled] = useState(true);
-  const [applicationsPageNumber, setApplicationPageNumber] = useState([]);
+  const [applications, setApplications] = useState([]);
   const [containerName, setContainerName] = useState(getCurrentContainer() ? getCurrentContainer() : 'Container Name');
   const [updateStatus, setUpdateStatus] = useState(false);
   const [presentPopUp, setPresentPopUp] = useState(false);
@@ -24,22 +25,17 @@ function App() {
     let itemsFromLocalStorage = JSON.parse(localStorage.getItem('applicationsStatus'))
     if (itemsFromLocalStorage == undefined || itemsFromLocalStorage.length == 0) {
       let itemsFromLocalStorage = [];
-      for (let i = 0; i < applicationsPageNumber.length; i++) {
-        itemsFromLocalStorage[i] = { name: (applicationsPageNumber[i]).name, pageNumber: 1 }
+      for (let i = 0; i < applications.length; i++) {
+        itemsFromLocalStorage[i] = { name: (applications[i]).name, pageNumber: 1 }
       }
       localStorage.setItem('applicationsStatus', JSON.stringify(itemsFromLocalStorage))
     }
   }
+
   const saveChangesToWordsFile = () => {
     if (translationArray.length > 0) {
       setDisabled(true);
-      const requestOptions = {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(translationArray)
-      };
-      fetch(`http://localhost:7776/words/`, requestOptions)
-        .then(setUpdateStatus(!updateStatus))
+      updateDbWordsCollection(translationArray,setUpdateStatus,updateStatus)
       setTranslationArray([]);
     }
   }
@@ -55,15 +51,14 @@ function App() {
 
   useEffect(() => {
     if (getCurrentContainer() == undefined) {
-      setContainerName(applicationsPageNumber[0].name)
+      setContainerName(applications[0].name)
     }
     setApplicationStatusToLS();
-  }, [applicationsPageNumber]);
+  }, [applications]);
+
 
   useEffect(() => {
-    fetch('http://localhost:7776/words/status')
-      .then(response => response.json()).then(data => setApplicationPageNumber(data)).catch(e => console.error(e))
-
+    setApplicationsFromDB(setApplications)
   }, []);
 
 
@@ -83,7 +78,7 @@ function App() {
               </div>
               <LeftMenu setPresentPopUp={setPresentPopUp} updateStatus={updateStatus} setContainerName={setContainerName} containerName={containerName} />
             </div>
-            <MainBody containerName={containerName} />
+            <MainBody containerName={containerName} updateStatus={updateStatus}/>
           </div>
         </SaveContext.Provider>
       </TranslationContext.Provider>

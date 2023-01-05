@@ -4,10 +4,11 @@ import SearchBar from "./searchBar/SearchBar";
 import SpecificWord from "./SpecificWord";
 import SortBy from "./searchBar/SortBy";
 import Filter from "./searchBar/Filter";
-import '../mainMenu/style/mainMenu.css'
+import '../mainMenu/style/mainMenu.css';
+import { changeDataByContainerName } from "../../Helpers/DbHelper";
 
 
-const MainBody = ({ containerName }) => {
+const MainBody = ({ containerName,updateStatus }) => {
 
     const setPageNumberFromLocalStorage = () => {
         let appsFromLS = JSON.parse(localStorage.getItem('applicationsStatus'))
@@ -28,13 +29,9 @@ const MainBody = ({ containerName }) => {
     const [isFilter, setIsFilter] = useState(false);
     const firstLabel = (pageNumber - 1) * WORDS_IN_PAGE;
 
+    
 
-    const changeDataByContainerName = () => {
-        if (containerName) {
-            fetch(`http://localhost:7776/words/projectName/${containerName}`)
-                .then(response => response.json()).then(data => setData(data)).catch(e => console.error(e))
-        }
-    }
+
     const setDataToPresentByWordInPage = () => {
         let dataLengthByWordInPage = data.length < WORDS_IN_PAGE ? data.length : WORDS_IN_PAGE;
         let firstLabel = (pageNumber - 1) * WORDS_IN_PAGE;
@@ -68,11 +65,14 @@ const MainBody = ({ containerName }) => {
         return arr;
     }
     useEffect(() => {
-        changeDataByContainerName()
+        changeDataByContainerName(containerName,setData)
     }, []);
     useEffect(() => {
+        changeDataByContainerName(containerName,setData)
+    }, [updateStatus]);
+    useEffect(() => {
         setPageNumber(setPageNumberFromLocalStorage())
-        changeDataByContainerName();
+        changeDataByContainerName(containerName,setData);
         localStorage.setItem('currentContainer', JSON.stringify(containerName))
     }, [containerName]);
 
@@ -97,9 +97,9 @@ const MainBody = ({ containerName }) => {
     return (
         <div className="main-body">
             <div className="search">
-                <SearchBar setDataToPresent={setDataToPresent} data={data} setData={setData} isFilter={isFilter} setIsFilter={setIsFilter} changeDataByContainerName={changeDataByContainerName} containerName={containerName} />
+                <SearchBar setDataToPresent={setDataToPresent} data={data} setData={setData} isFilter={isFilter} setIsFilter={setIsFilter} containerName={containerName} />
                 <SortBy data={data} setData={setData} containerName={containerName} />
-                <Filter data={data} setData={setData} changeDataByContainerName={changeDataByContainerName} setPageNumber={setPageNumber} containerName={containerName} />
+                <Filter data={data} setData={setData} setPageNumber={setPageNumber} containerName={containerName} />
             </div>
             <div className="main-body-title">
                 <div >Term</div>

@@ -2,7 +2,6 @@ export const setTranslationArrayWithFlags = (rowData,translationArray,flag,setTr
     let wordIndex = translationArray.findIndex(word => word.id == rowData.id);
     if (wordIndex == -1) {
         setTranslationArray([...translationArray, { id: rowData.id, flagged: flag, translation: rowData.translation, translated: rowData.translated }])
-        console.log([...translationArray, { id: rowData.id, flagged: flag, translation: rowData.translation, translated: rowData.translated }])
     }
     else {
         let arrAfterUpdate = [...translationArray];

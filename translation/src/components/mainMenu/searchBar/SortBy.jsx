@@ -4,6 +4,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import SortIcon from '@mui/icons-material/Sort';
+import { changeDataByContainerName } from "../../../Helpers/DbHelper";
 
 
 const SortBy = ({ data, setData, containerName }) => {
@@ -45,12 +46,11 @@ const SortBy = ({ data, setData, containerName }) => {
         break;
       case '':
         if (containerName) {
-          fetch(`http://localhost:7776/words/projectName/${containerName}`)
-            .then(response => response.json()).then(data => setData(data)).catch(e => console.error(e))
-        }
+          changeDataByContainerName(containerName,setData);
         break;
     }
   };
+}
 
   useEffect(() => {
     setSortBy('')

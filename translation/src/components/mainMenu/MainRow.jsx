@@ -1,12 +1,13 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import SpecificWord from "./SpecificWord";
+import { setDataFromDb } from "../../Helpers/DbHelper";
 
 const MainRow = () => {
     const [data, setData] = useState([])
+
     useEffect(() => {
-        fetch('http://localhost:7776/words')
-            .then(response => response.json()).then(data => setData(data)).catch(e => console.error(e))
+        setDataFromDb(setData)
 
     }, []);
 

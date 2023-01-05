@@ -3,18 +3,17 @@ import React from "react";
 import { useState,useEffect } from "react";
 import '../leftMenu/style/leftMenu.css'
 import ProgressBar from "./ProgressBar";
+import { updateStatusFromDb } from "../../Helpers/DbHelper";
 
 const LeftMenu = ({updateStatus, setContainerName, containerName,setPresentPopUp }) => {
     const [appStatus,setAppStatus] = useState([]);
+
     useEffect(() => {
-        fetch('http://localhost:7776/words/status')
-          .then(response => response.json()).then(data => setAppStatus(data)).catch(e => console.error(e))
-    
+        updateStatusFromDb(setAppStatus);
       }, []);
+
       useEffect(() => {
-        fetch('http://localhost:7776/words/status')
-          .then(response => response.json()).then(data => setAppStatus(data)).catch(e => console.error(e))
-    
+        updateStatusFromDb(setAppStatus);
       }, [updateStatus]);
     const changeApp = (event) => {
         setContainerName(event.target.value);
