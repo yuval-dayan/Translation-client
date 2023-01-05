@@ -81,7 +81,7 @@ const SpecificWord = ({ rowData}) => {
     return (
         <div>{rowData && rowData.id && <div className="specificRow">
             {(checked || options.length >1) && <div className="checked-icon" > <CheckIcon sx={{ color: `${checkedColor}`  } }  onClick={saveOptionAsValue}/> </div>}
-            <FlagWord translationArray={translationArray} rowData={rowData} setTranslationArray={setTranslationArray} />
+            <FlagWord translationArray={translationArray} rowData={rowData} setTranslationArray={setTranslationArray} setPresentPopUp={setPresentPopUp} />
             <div className="label">
                 {rowData && (rowData.englishWord || rowData.label)}
             </div >

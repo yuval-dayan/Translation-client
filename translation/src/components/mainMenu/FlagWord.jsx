@@ -3,12 +3,13 @@ import '../mainMenu/style/mainMenu.css'
 import FlagIcon from '@mui/icons-material/Flag';
 import { setTranslationArrayWithFlags } from "../../Helpers/translationArrayHelper";
 
-const FlagWord = ({ translationArray, setTranslationArray, rowData }) => {
+const FlagWord = ({ translationArray, setTranslationArray, rowData ,setPresentPopUp}) => {
     const GREY = '#616161';
     const ORANGE = '#ff6d00'
     const [flagColor, setFlagColor] = useState(rowData && rowData.flagged ? ORANGE : GREY)
 
     const addOrRemoveFlag = () => {
+        setPresentPopUp(false);
         if (flagColor == GREY) {
             updateFlagPropInWord(true, ORANGE);
         }
