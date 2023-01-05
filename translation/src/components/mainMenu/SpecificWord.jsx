@@ -22,6 +22,7 @@ const SpecificWord = ({ rowData}) => {
     const [otherOption, setOtherOption] = useState(false)
     const OTHER = 'Other';
     const [textInput, setTextInput] = useState('');
+    const [isOther,setIsOther] = useState(false);
 
     const setValues = (value) => {
         setPresentPopUp(false)
@@ -88,8 +89,8 @@ const SpecificWord = ({ rowData}) => {
             {<div className="dropDown-wrapper" >
                 <div className="App">
                     {
-                        otherOption ? <TextFieldOption textInput={textInput} setTextInput={setTextInput} setValueToPresent={setValueToPresent} setValues={setValues} setOptions={setOptions} options={options} setOtherOption={setOtherOption} />
-                            : <SelectOptions valueToPresent={valueToPresent} options={options} setValues={setValues} OTHER={OTHER} setOtherOption={setOtherOption} />
+                        otherOption ? <TextFieldOption textInput={textInput} setTextInput={setTextInput} setValueToPresent={setValueToPresent} setValues={setValues} setOptions={setOptions} options={options} setOtherOption={setOtherOption} isOther={isOther} setIsOther={setIsOther} />
+                            : <SelectOptions valueToPresent={valueToPresent} options={options} setValues={setValues} OTHER={OTHER} setOtherOption={setOtherOption} setIsOther={setIsOther} />
                     }
                 </div>
             </div>}

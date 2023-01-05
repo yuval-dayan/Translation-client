@@ -2,10 +2,11 @@ import React from "react";
 import Select from 'react-select';
 import '../../components/MainRow.css'
 
-const SelectOptions = ({ valueToPresent, setOtherOption, setValues, OTHER, options }) => {
+const SelectOptions = ({ valueToPresent, setOtherOption, setValues, OTHER, options ,setIsOther}) => {
     const handleChange = (event) => {
         if (event.value == OTHER) {
-            setOtherOption(true)
+            setOtherOption(true);
+            setIsOther(true)
         }
         else {
             setValues(event.value)
