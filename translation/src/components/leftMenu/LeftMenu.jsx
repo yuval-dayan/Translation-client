@@ -1,7 +1,7 @@
 import { Button } from "@mui/material";
 import React from "react";
 import { useState,useEffect } from "react";
-import '../../components/MainRow.css'
+import '../leftMenu/style/leftMenu.css'
 import ProgressBar from "./ProgressBar";
 
 const LeftMenu = ({updateStatus, setContainerName, containerName,setPresentPopUp }) => {

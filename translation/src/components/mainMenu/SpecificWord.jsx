@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect,useRef } from "react";
 import { TranslationContext } from "../../context/TranslationContext";
 import { SaveContext } from "../../context/SaveContext";
-import '../../components/MainRow.css'
+import '../mainMenu/style/mainMenu.css'
 import CheckIcon from '@mui/icons-material/Check';
 import TextFieldOption from "./TextFieldOption";
 import SelectOptions from "./SelectOptions";

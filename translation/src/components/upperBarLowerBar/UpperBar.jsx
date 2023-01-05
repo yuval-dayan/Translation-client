@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import SaveIcon from '@mui/icons-material/Save';
 import GetAppIcon from '@mui/icons-material/GetApp';
 import FileUploadIcon from '@mui/icons-material/FileUpload';
+import '../upperBarLowerBar/style/upperLowerBar.css'
 const UpperBar = ({ containerName, saveChangesToWordsFile, disabled }) => {
     const [saveColor, setSaveColor] = useState("black")
     useEffect(() => {

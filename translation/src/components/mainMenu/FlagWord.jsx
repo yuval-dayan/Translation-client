@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import '../../components/MainRow.css'
+import '../mainMenu/style/mainMenu.css'
 import FlagIcon from '@mui/icons-material/Flag';
 import { setTranslationArrayWithFlags } from "../../Helpers/translationArrayHelper";
 

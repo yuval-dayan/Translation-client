@@ -4,6 +4,7 @@ import SearchBar from "./searchBar/SearchBar";
 import SpecificWord from "./SpecificWord";
 import SortBy from "./searchBar/SortBy";
 import Filter from "./searchBar/Filter";
+import '../mainMenu/style/mainMenu.css'
 
 
 const MainBody = ({ containerName }) => {

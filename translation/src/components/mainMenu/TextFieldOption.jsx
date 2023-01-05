@@ -2,8 +2,7 @@ import React, { useRef } from "react";
 import TextField from '@mui/material/TextField';
 import IconButton from '@mui/material/IconButton';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
-import '../../components/MainRow.css'
-
+import '../mainMenu/style/mainMenu.css'
 const TextFieldOption = ({ textInput, setTextInput, setValueToPresent, setValues, setOptions, options, setOtherOption }) => {
 
     const ref = useRef(null);

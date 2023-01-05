@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import './progressBar.css'
+import '../leftMenu/style/progressBar.css'
 import CheckIcon from '@mui/icons-material/Check';
 import FlagIcon from '@mui/icons-material/Flag';
 

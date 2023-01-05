@@ -1,0 +1,33 @@
+.left-menu {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    width: 20vw;
+    margin: 0 0 1px 0px;
+    direction: ltr;
+    box-shadow: rgb(100 100 111 / 20%) 0px 7px 29px 0px;
+}
+
+.wrapper-seprator {
+    display: flex;
+    width: 100%;
+    height: 5vh;
+}
+.left-menu-options {
+    background-color: '#c5c5c5';
+    justify-content: space-around;
+    border:  #d9d9d9 solid 1px;
+    border-radius: 5px;
+    padding: 2vh 0;
+    margin: 0 1.5vw;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;}
+    
+    .choosen-app {
+        display: flex;
+        height: max-content;
+        flex-direction: column;
+        align-items: center;
+        padding: 2vh 0;
+        margin: 0 1.5vw;
+        color: black;
+        border-radius: 3px;
+    }

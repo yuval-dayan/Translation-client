@@ -1,0 +1,45 @@
+.prev-next-word {
+    background-color: menu-back-ground-color;
+    height: 5vh;
+    display: flex;
+    place-content: space-evenly;
+}
+.upper-bar {
+    height: 10vh;
+    width: inherit;
+    text-align: center;
+    font-size: 30px;
+    font-weight: 200;
+    background-color: white;
+
+}
+
+.container-name-upper-bar {
+    margin-top: 2.5vh;
+    position: absolute;
+}
+.icons-wrapper{
+    position: absolute;
+    margin: 0 1vw;
+    right: 0;
+    width: 50%;
+    height: 80px;
+    display: flex;
+    flex-flow: row-reverse;
+}
+.save-button {
+    background: #cdcbcb;
+    text-align: center;
+    width: 60px;
+    height: 60px;
+    border-radius: 100%;
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 35px;
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    margin: 18px 10px;
+}
