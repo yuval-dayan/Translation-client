@@ -61,7 +61,7 @@ function App() {
 
   return (
     <div className='app'>
-      {presentPopUp && translationArray.length > 0 && <AlertDialog presentPopUp={presentPopUp} setPresentPopUp={setPresentPopUp} saveChangesToWordsFile={saveChangesToWordsFile} />}
+      {presentPopUp && translationArray.length > 0 && <AlertDialog presentPopUp={presentPopUp} setPresentPopUp={setPresentPopUp} saveChangesToWordsFile={saveChangesToWordsFile} setTranslationArray={setTranslationArray} />}
       <TranslationContext.Provider value={{ translationArray, setTranslationArray }}>
         <SaveContext.Provider value={{ setPresentPopUp }}>
 

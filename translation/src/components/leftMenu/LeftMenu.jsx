@@ -27,7 +27,7 @@ const LeftMenu = ({updateStatus, setContainerName, containerName,setPresentPopUp
                     <div className="wrapper-seprator">
                     </div>
                     <div className={app.name == containerName ? 'left-menu-options choosen-app ' : 'left-menu-options'} key={(app && app.name)}>
-                        <Button style={{ width: 300 ,color:"black"}} value={app.name} onClick={(e)=>{changeApp(e)}} color={app.nonTranslatedWords > 0 ? 'warning' : 'info'}> {app.name}</Button>
+                        <Button style={app.name == containerName ?{ width: 300 ,fontWeight: 'bold',color:"black"}:{ width: 300 ,color:"black"}} value={app.name} onClick={(e)=>{changeApp(e)}} color={app.nonTranslatedWords > 0 ? 'warning' : 'info'}> {app.name}</Button>
                         <ProgressBar app={app} containerName={containerName}/>
                     </div></React.Fragment>
             )}
