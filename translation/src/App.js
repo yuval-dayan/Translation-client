@@ -34,7 +34,6 @@ function App() {
 
   const saveChangesToWordsFile = () => {
     if (translationArray.length > 0) {
-      setDisabled(true);
       updateDbWordsCollection(translationArray,setUpdateStatus,updateStatus)
       setTranslationArray([]);
     }
@@ -43,6 +42,8 @@ function App() {
     if (translationArray.length > 0 && disabled) {
       setDisabled(false);
     }
+    else
+    {setDisabled(true)}
   }, [translationArray]);
 
 
@@ -61,7 +62,7 @@ function App() {
 
   return (
     <div className='app'>
-      {presentPopUp && translationArray.length > 0 && <AlertDialog presentPopUp={presentPopUp} setPresentPopUp={setPresentPopUp} saveChangesToWordsFile={saveChangesToWordsFile} setTranslationArray={setTranslationArray} />}
+      {presentPopUp && translationArray.length > 0 && <AlertDialog presentPopUp={presentPopUp} setPresentPopUp={setPresentPopUp} saveChangesToWordsFile={saveChangesToWordsFile} setTranslationArray={setTranslationArray} setDisable={setDisabled}/>}
       <TranslationContext.Provider value={{ translationArray, setTranslationArray }}>
         <SaveContext.Provider value={{ setPresentPopUp }}>
 

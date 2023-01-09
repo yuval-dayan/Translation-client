@@ -6,12 +6,11 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 
-export default function AlertDialog({presentPopUp,setPresentPopUp,saveChangesToWordsFile,setTranslationArray}) {
+export default function AlertDialog({presentPopUp,setPresentPopUp,saveChangesToWordsFile,setTranslationArray,setDisabled}) {
 
   const handleCloseNoOption = () => {
     setPresentPopUp(false);
-    setTranslationArray([])
-
+    setTranslationArray([]);
   };
   const handleCloseYesOption = () => {
     setPresentPopUp(false);
