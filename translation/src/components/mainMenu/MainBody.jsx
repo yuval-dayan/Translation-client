@@ -6,10 +6,12 @@ import SortBy from "./searchBar/SortBy";
 import Filter from "./searchBar/Filter";
 import '../mainMenu/style/mainMenu.css';
 import { changeDataByContainerName } from "../../Helpers/DbHelper";
-import { getApplicationStatusFromLS,setCurrentContainerToLS,setApplicationsStatus } from "../../Helpers/LocalStorageHelper";
+import { getApplicationStatusFromLS, setCurrentContainerToLS, setApplicationsStatus } from "../../Helpers/LocalStorageHelper";
+import Checkbox from '@mui/material/Checkbox';
 
 
-const MainBody = ({ containerName,updateStatus }) => {
+
+const MainBody = ({ containerName, updateStatus }) => {
     const appFromLocalStorage = getApplicationStatusFromLS()
 
     const setPageNumberFromLocalStorage = () => {
@@ -33,14 +35,23 @@ const MainBody = ({ containerName,updateStatus }) => {
 
 
     const setDataToPresentByWordInPage = () => {
-        let dataLengthByWordInPage = data.length < WORDS_IN_PAGE ? data.length : WORDS_IN_PAGE;
-        let firstLabel = (pageNumber - 1) * WORDS_IN_PAGE;
-        let lastLabel = pageNumber == dataLengthByWordInPage ? (((pageNumber - 1) * WORDS_IN_PAGE) + (data.length % WORDS_IN_PAGE)) : pageNumber * WORDS_IN_PAGE;
-        let arr = [];
-        for (let i = firstLabel; i < lastLabel; i++) {
-            arr[i] = data[i];
+        if(data !=undefined)
+        {
+            let dataLengthByWordInPage = data.length < WORDS_IN_PAGE ? data.length : WORDS_IN_PAGE;
+            let firstLabel = (pageNumber - 1) * WORDS_IN_PAGE;
+            let lastLabel = pageNumber == dataLengthByWordInPage ? (((pageNumber - 1) * WORDS_IN_PAGE) + (data.length % WORDS_IN_PAGE)) : pageNumber * WORDS_IN_PAGE;
+            let arr = [];
+            data.sort(function(a, b){
+                if(a.id < b.id) { return -1; }
+                if(a.id > b.id) { return 1; }
+                return 0;
+            })
+            for (let i = firstLabel; i < lastLabel; i++) {
+                arr[i] = data[i];
+            }
+            setDataToPresent(arr);
         }
-        setDataToPresent(arr);
+
     }
     const changeApplicationsStatusInLS = () => {
         const appIndex = appFromLocalStorage.findIndex(obj => { return obj.name == containerName })

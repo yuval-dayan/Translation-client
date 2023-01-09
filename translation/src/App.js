@@ -45,9 +45,6 @@ function App() {
     }
   }, [translationArray]);
 
-  useEffect(() => {
-    setTranslationArray([])
-  }, [updateStatus]);
 
   useEffect(() => {
     if (getCurrentContainerFromLS() == undefined) {
