@@ -7,7 +7,7 @@ import Select from '@mui/material/Select';
 import { changeDataByContainerName } from "../../../Helpers/DbHelper";
 
 
-const Filter = ({ data, setData, setPageNumber, containerName }) => {
+const Filter = ({setData, setPageNumber, containerName,constData }) => {
     const [filterBy, setFilterBy] = useState('None');
 
     useEffect(() => {
@@ -18,19 +18,19 @@ const Filter = ({ data, setData, setPageNumber, containerName }) => {
         setPageNumber(1);
         switch (event.target.value) {
             case 'None':
-                changeDataByContainerName(containerName,setData)
+                setData(constData);
                 break;
             case '':
-                changeDataByContainerName(containerName,setData)
+                setData(constData);
                 break;
             case 'Flag':
-                setData(data.filter(word => word.flagged == true))
+                setData(constData.filter(word => word.flagged == true))
                 break;
             case 'Not Translated':
-                setData(data.filter(word => word.translated == false))
+                setData(constData.filter(word => word.translated == false))
                 break;
                 case 'Translated':
-                    setData(data.filter(word => word.translated == true))
+                    setData(constData.filter(word => word.translated == true))
                     break;
         }
 

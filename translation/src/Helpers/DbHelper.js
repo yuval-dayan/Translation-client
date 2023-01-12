@@ -17,10 +17,10 @@ export const updateDbWordsCollection = (translationArray,setUpdateStatus,updateS
     .then(response => response.json()).then(data => setApplications(data)).catch(e => console.error(e))
 
   }
-  export const changeDataByContainerName = (containerName,setData) => {
+  export const changeDataByContainerName = (containerName,setConstData) => {
     if (containerName) {
         fetch(`http://localhost:7776/words/projectName/${containerName}`)
-            .then(response => response.json()).then(data => setData(data)).catch(e => console.error(e))
+            .then(response => response.json()).then(data => setConstData(data)).catch(e => console.error(e))
     }
 }
 export  const setDataFromDb = (setData) =>{

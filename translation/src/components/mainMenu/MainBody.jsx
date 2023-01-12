@@ -11,7 +11,7 @@ import Checkbox from '@mui/material/Checkbox';
 
 
 
-const MainBody = ({ containerName, updateStatus }) => {
+const MainBody = ({ containerName, updateStatus, constData,setConstData}) => {
     const appFromLocalStorage = getApplicationStatusFromLS()
 
     const setPageNumberFromLocalStorage = () => {
@@ -76,21 +76,25 @@ const MainBody = ({ containerName, updateStatus }) => {
         return arr;
     }
     useEffect(() => {
-        changeDataByContainerName(containerName,setData)
+        changeDataByContainerName(containerName,setConstData)
     }, []);
     
     useEffect(() => {
-        changeDataByContainerName(containerName,setData)
+        changeDataByContainerName(containerName,setConstData)
     }, [updateStatus]);
     useEffect(() => {
         setPageNumber(setPageNumberFromLocalStorage())
-        changeDataByContainerName(containerName,setData);
+        changeDataByContainerName(containerName,setConstData);
         setCurrentContainerToLS(containerName)
     }, [containerName]);
 
     useEffect(() => {
-        setDataToPresentByWordInPage();
-        setDataLength(Math.ceil(data.length / WORDS_IN_PAGE))
+        if(data)
+        {
+            setDataToPresentByWordInPage();
+            setDataLength(Math.ceil(data.length / WORDS_IN_PAGE))
+        }
+
     }, [data]);
 
     useEffect(() => {
@@ -105,13 +109,16 @@ const MainBody = ({ containerName, updateStatus }) => {
         setDataToPresent(dataByDataLength());
     }, [dataLength]);
 
+    useEffect(() => {
+        setData(constData);
+    }, [constData]);
 
     return (
         <div className="main-body">
             <div className="search">
                 <SearchBar setDataToPresent={setDataToPresent} data={data} setData={setData} isFilter={isFilter} setIsFilter={setIsFilter} containerName={containerName} />
                 <SortBy data={data} setData={setData} containerName={containerName} />
-                <Filter data={data} setData={setData} setPageNumber={setPageNumber} containerName={containerName} />
+                <Filter constData={constData} setData={setData} setPageNumber={setPageNumber} containerName={containerName} />
             </div>
             <div className="main-body-title">
                 <div >Term</div>

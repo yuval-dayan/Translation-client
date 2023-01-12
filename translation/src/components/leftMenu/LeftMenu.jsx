@@ -3,9 +3,9 @@ import React from "react";
 import { useState,useEffect } from "react";
 import '../leftMenu/style/leftMenu.css'
 import ProgressBar from "./ProgressBar";
-import { updateStatusFromDb } from "../../Helpers/DbHelper";
+import { updateStatusFromDb ,changeDataByContainerName} from "../../Helpers/DbHelper";
 
-const LeftMenu = ({updateStatus, setContainerName, containerName,setPresentPopUp }) => {
+const LeftMenu = ({updateStatus, setContainerName, containerName,setPresentPopUp,setConstData}) => {
     const [appStatus,setAppStatus] = useState([]);
 
     useEffect(() => {
@@ -14,6 +14,7 @@ const LeftMenu = ({updateStatus, setContainerName, containerName,setPresentPopUp
 
       useEffect(() => {
         updateStatusFromDb(setAppStatus);
+        changeDataByContainerName(containerName,setConstData)
       }, [updateStatus]);
     const changeApp = (event) => {
         setContainerName(event.target.value);

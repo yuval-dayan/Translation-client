@@ -18,6 +18,7 @@ function App() {
   const [containerName, setContainerName] = useState(getCurrentContainerFromLS() ? getCurrentContainerFromLS(): 'Container Name');
   const [updateStatus, setUpdateStatus] = useState(false);
   const [presentPopUp, setPresentPopUp] = useState(false);
+  const [constData,setConstData] = useState([]);
 
  
 
@@ -74,9 +75,9 @@ function App() {
               </label>
               <div className='save-button-wrapper'>
               </div>
-              <LeftMenu setPresentPopUp={setPresentPopUp} updateStatus={updateStatus} setContainerName={setContainerName} containerName={containerName} />
+              <LeftMenu setConstData={setConstData}   setPresentPopUp={setPresentPopUp} updateStatus={updateStatus} setContainerName={setContainerName} containerName={containerName} />
             </div>
-            <MainBody containerName={containerName} updateStatus={updateStatus}/>
+            <MainBody setConstData={setConstData} constData={constData}  containerName={containerName} updateStatus={updateStatus}/>
           </div>
         </SaveContext.Provider>
       </TranslationContext.Provider>
