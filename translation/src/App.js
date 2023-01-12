@@ -40,7 +40,7 @@ function App() {
     }
   }
   useEffect(() => {
-    if (translationArray.length > 0 && disabled) {
+    if (translationArray.length > 0) {
       setDisabled(false);
     }
     else

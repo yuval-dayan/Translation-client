@@ -41,13 +41,15 @@ const MainBody = ({ containerName, updateStatus, constData,setConstData}) => {
             let firstLabel = (pageNumber - 1) * WORDS_IN_PAGE;
             let lastLabel = pageNumber == dataLengthByWordInPage ? (((pageNumber - 1) * WORDS_IN_PAGE) + (data.length % WORDS_IN_PAGE)) : pageNumber * WORDS_IN_PAGE;
             let arr = [];
+            let index=0
             data.sort(function(a, b){
                 if(a.id < b.id) { return -1; }
                 if(a.id > b.id) { return 1; }
                 return 0;
             })
             for (let i = firstLabel; i < lastLabel; i++) {
-                arr[i] = data[i];
+                arr[index] = data[i];
+                index++
             }
             setDataToPresent(arr);
         }
@@ -69,8 +71,10 @@ const MainBody = ({ containerName, updateStatus, constData,setConstData}) => {
         if (data.length > 0) {
             const dataAfterSort = data.sort(function (a, b) { return a.id - b.id });
             const lastLabel = pageNumber == dataLength ? (((pageNumber - 1) * WORDS_IN_PAGE) + (data.length % WORDS_IN_PAGE)) : pageNumber * WORDS_IN_PAGE;
+            let index = 0;
             for (let i = firstLabel; i < lastLabel; i++) {
-                arr[i] = dataAfterSort[i];
+                arr[index] = dataAfterSort[i];
+                index++;
             }
         }
         return arr;
@@ -106,7 +110,7 @@ const MainBody = ({ containerName, updateStatus, constData,setConstData}) => {
     }, [pageNumber]);
 
     useEffect(() => {
-        setDataToPresent(dataByDataLength());
+        setDataToPresentByWordInPage();
     }, [dataLength]);
 
     useEffect(() => {

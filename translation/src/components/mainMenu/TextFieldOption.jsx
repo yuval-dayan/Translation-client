@@ -26,9 +26,14 @@ const TextFieldOption = ({ textInput, setTextInput, setValueToPresent, setValues
             setTextInput('');
         }
     }
+    const onMouseOut =()=>{
+        if (textInput.length > 0) {
+        saveNewValue();
+        }
+    }
 
     return (
-        <div className='other-translation'>
+        <div className='other-translation' onMouseOut={onMouseOut}>
             <div className='other-translation-new-word'>
                 <TextField fullWidth onChange={handleTextInputChange} onKeyPress={onkeyPress}
                     value={textInput}
